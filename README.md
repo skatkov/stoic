@@ -14,3 +14,8 @@ editor = "/usr/bin/nano"
 directory = "~/MEGAsync/journal/
 ```
 
+You can also define template for new entries.
+
+```
+template = "~/stoic_template.txt
+```
