@@ -9,7 +9,7 @@ I've been battling my inner demons with different methods in the past with varyi
 Existing software for journaling and note taking is too slow to load and filled with features I don'
 t really need. Plain-text files stored in cloud storage and edited througn nano is more than enough. But some recurring manual work was still required - create new daily file and  modify according to my template. This command line utility completely removes that manual work for me. 
 
-Epictetus, great Stoic philospher and slave, once told to his students that "philosophy is something one should write down day by day". Hence name of this tool is a reference to this great human and hat tip to practical philosphy.
+Epictetus, great Stoic philospher and slave, once told to his students that "philosophy is something one should write down day by day". Hence name of this tool is a reference to this great human and hat tip to practical philosophy called Stoicism.
 
 ## Brief
 After you run 'stoic' command utility will:
