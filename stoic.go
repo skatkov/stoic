@@ -4,26 +4,29 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"strings"
+	"time"
 )
 
-var editor = "/usr/bin/nano"
-var filename = "11-may-2022"
-var extension = "txt"
-var directory = "~/MEGAsync/journal/" + filename + "." + extension
+const DEFAULT_EDITOR = "nano"
 
-// https://golangdocs.com/system-programming-in-go-3
+var extension = "txt"
+var directory = "~/MEGAsync/journal/"
 
 func main() {
-	fmt.Println(
-		"Directory: " + directory,
-	)
-	openInEditor(directory)
+	openInEditor(directory + timeToFilename(time.Now()) + "." + extension)
+}
+
+func timeToFilename(timestamp time.Time) string {
+	year, month, day := timestamp.Date()
+
+	return fmt.Sprintf("%d-%s-%02d", year, strings.ToLower(month.String()[:3]), day)
 }
 
 func openInEditor(filename string) error {
 	var editor = os.Getenv("EDITOR")
 	if editor == "" {
-		editor = "nano"
+		editor = DEFAULT_EDITOR
 	}
 	cmd := exec.Command(editor, filename)
 	cmd.Stdin = os.Stdin
