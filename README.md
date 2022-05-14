@@ -39,7 +39,7 @@ After you run 'stoic' command utility will:
 ```
 export EDITOR="nano"
 export STOIC_DIR="~/MEGAsync/journal/"
-export STOIC_TEMPLATE="~/MEGAsync/journal/template.txt"
+export STOIC_TEMPLATE="~/MEGAsync/journal/template.md"
 export STOIC_EXT="md"
 ```
 
