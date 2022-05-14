@@ -26,3 +26,9 @@ After you run 'stoic' command utility will:
 This was primary written to be used on Linux, but should work OSX as well. 
 
 Windows is not supported, I haven't touched it for ages.
+
+
+## Contributions
+This project is my little playground to learn golang. It would be awesome to learn about any improvements that are appropriate for this codebase.
+
+Everyone is welcome to contribute.
