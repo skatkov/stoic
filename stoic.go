@@ -6,15 +6,35 @@ import (
 	"os/exec"
 	"strings"
 	"time"
+
+	homedir "github.com/mitchellh/go-homedir"
 )
 
 const DEFAULT_EDITOR = "nano"
-
-var extension = "txt"
-var directory = "~/MEGAsync/journal/"
+const DEFAULT_DIRECTORY = "~/Journal/"
+const DEFAULT_EXTENSION = "txt"
 
 func main() {
-	openInEditor(directory + timeToFilename(time.Now()) + "." + extension)
+	dir := directory()
+
+	err := createDirectoryIfMissing(dir)
+	if err != nil {
+		return
+	}
+
+	openInEditor(dir + timeToFilename(time.Now()) + "." + DEFAULT_EXTENSION)
+}
+
+func createDirectoryIfMissing(dir string) error {
+	if _, err := os.Stat(dir); os.IsNotExist(err) {
+		err := os.MkdirAll(dir, 0755)
+
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
 }
 
 func timeToFilename(timestamp time.Time) string {
@@ -33,4 +53,16 @@ func openInEditor(filename string) error {
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	return cmd.Run()
+}
+
+func directory() string {
+	directory := os.Getenv("STOIC_DIR")
+
+	if directory == "" {
+		directory, _ = homedir.Expand(DEFAULT_DIRECTORY)
+	} else {
+		directory, _ = homedir.Expand(directory)
+	}
+
+	return directory + "/"
 }

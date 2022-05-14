@@ -13,15 +13,16 @@ Epictetus a great stoic philospher and slave, once told to his students that "ph
 
 ## Brief
 After you run 'stoic' command utility will:
-- create or open file <current_year>-<current_month>-<current_day>.txt in a directory of your choosing (default: ~/journal/).
+- create or open file <current_year>-<current_month>-<current_day>.txt in a directory of your choosing (default: ~/Journal/).
 - File will be opened in a editr you defined in $EDITOR variable (or default: nano)
-- It's possible to define template for a new entry 
+- It's possible to define template for a new entry (TODO)
 
-## Tweaking
-You can create a file in ~/.stoic to alter utility parameters:
+## Configration
 
-```
-directory = "~/MEGAsync/journal/
-template = "~/stoic_template.txt
-```
-Editor could be changed  by setting $EDITOR global variable.
+- Editor could be changed  by setting $EDITOR global variable.
+- Directory for journal could be changed by setting $STOIC_DIR global variable.
+
+## OS Support
+This was primary written to be used on Linux, but should work OSX as well. 
+
+Windows is not supported, I haven't touched it for ages.
