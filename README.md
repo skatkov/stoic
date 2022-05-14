@@ -15,12 +15,15 @@ Epictetus, great Stoic philospher and slave, once told to his students that "phi
 After you run 'stoic' command utility will:
 - create or open file <current_year>-<current_month>-<current_day>.txt in a directory of your choosing (default: ~/Journal/).
 - File will open in a editor you defined in $EDITOR global variable (but default is nano)
-- It's possible to define template for a new entry (TODO)
+- It's possible to define template for a new entry
+- I use plain .txt files, but it's possible to use anything else (like .md) (TODO)
 
 ## Configration
 
 - Editor could be changed  by setting $EDITOR global variable.
 - Directory for journal could be changed by setting $STOIC_DIR global variable.
+- Provide file template through $STOIC_TEMPLATE global variable.
+- 
 
 ## OS Support
 This was primary written to be used on Linux, but should work OSX as well. 

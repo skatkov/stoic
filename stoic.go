@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 	"os/exec"
@@ -16,13 +17,62 @@ const DEFAULT_EXTENSION = "txt"
 
 func main() {
 	dir := directory()
+	filepath := dir + timeToFilename(time.Now()) + "." + DEFAULT_EXTENSION
+	template, _ := homedir.Expand(os.Getenv("STOIC_TEMPLATE"))
 
 	err := createDirectoryIfMissing(dir)
 	if err != nil {
 		return
 	}
 
-	openInEditor(dir + timeToFilename(time.Now()) + "." + DEFAULT_EXTENSION)
+	if template != "" && !fileExists(filepath) {
+		createFileFromTemplate(filepath, template)
+	}
+
+	openInEditor(filepath)
+}
+
+func readFile(filename string) (string, error) {
+	file, err := os.Open(filename)
+	if err != nil {
+		return "", err
+	}
+
+	defer file.Close()
+
+	var lines []string
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+
+	return strings.Join(lines, "\n"), nil
+}
+
+func createFileFromTemplate(filename string, template_path string) error {
+	file, err := os.Create(filename)
+	if err != nil {
+		return err
+	}
+
+	defer file.Close()
+
+	template, _ := readFile(template_path)
+
+	_, err = file.WriteString(template)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func fileExists(filename string) bool {
+	if _, err := os.Stat(filename); os.IsNotExist(err) {
+		return false
+	}
+
+	return true
 }
 
 func createDirectoryIfMissing(dir string) error {
