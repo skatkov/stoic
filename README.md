@@ -18,12 +18,32 @@ After you run 'stoic' command utility will:
 - It's possible to define template for a new entry
 - I use plain .txt files, but it's possible to use anything else (like .md) (TODO)
 
+## Installation
+### Linux
+1. [**Download**](https://github.com/skatkov/stoic/)
+   the latest version and unzip
+2. Copy to path, e.g. `mv stoic /usr/local/bin/stoic` (might require `sudo`)
+
+### MacOS, Windows
+1. Make sure to have go installed
+2. Run `go build ./stoic`
+3. Copy to path, e.g. `mv stoic /usr/local/bin/stoic` (might require `sudo`)
+
 ## Configration
 
 - Editor could be changed  by setting $EDITOR global variable.
 - Directory for journal could be changed by setting $STOIC_DIR global variable.
 - Provide file template through $STOIC_TEMPLATE global variable.
-- 
+- Provide new extension format through $STOIC_EXT global variables
+
+```
+export EDITOR="nano"
+export STOIC_DIR="~/MEGAsync/journal/"
+export STOIC_TEMPLATE="~/MEGAsync/journal/template.txt"
+export STOIC_EXT="md"
+```
+
+
 
 ## OS Support
 This was primary written to be used on Linux, but should work OSX as well. 

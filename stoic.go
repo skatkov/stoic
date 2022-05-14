@@ -17,19 +17,30 @@ const DEFAULT_EXTENSION = "txt"
 
 func main() {
 	dir := directory()
-	filepath := dir + timeToFilename(time.Now()) + "." + DEFAULT_EXTENSION
-	template, _ := homedir.Expand(os.Getenv("STOIC_TEMPLATE"))
-
 	err := createDirectoryIfMissing(dir)
 	if err != nil {
+		fmt.Println(err)
 		return
 	}
+
+	filepath := dir + timeToFilename(time.Now())
+	template, _ := homedir.Expand(os.Getenv("STOIC_TEMPLATE"))
 
 	if template != "" && !fileExists(filepath) {
 		createFileFromTemplate(filepath, template)
 	}
 
 	openInEditor(filepath)
+}
+
+func fileExtension() string {
+	extension := os.Getenv("STOIC_EXT")
+
+	if extension == "" {
+		extension = DEFAULT_EXTENSION
+	}
+
+	return extension
 }
 
 func readFile(filename string) (string, error) {
@@ -89,8 +100,9 @@ func createDirectoryIfMissing(dir string) error {
 
 func timeToFilename(timestamp time.Time) string {
 	year, month, day := timestamp.Date()
+	filename := fmt.Sprintf("%d-%s-%02d", year, strings.ToLower(month.String()[:3]), day)
 
-	return fmt.Sprintf("%d-%s-%02d", year, strings.ToLower(month.String()[:3]), day)
+	return filename + "." + fileExtension()
 }
 
 func openInEditor(filename string) error {
