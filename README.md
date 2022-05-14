@@ -20,7 +20,7 @@ After you run 'stoic' command utility will:
 
 ## Installation
 ### Linux
-1. [**Download**](https://github.com/skatkov/stoic/)
+1. [**Download**](https://github.com/skatkov/stoic/blob/main/stoic)
    the latest version and unzip
 2. Copy to path, e.g. `mv stoic /usr/local/bin/stoic` (might require `sudo`)
 
@@ -42,8 +42,6 @@ export STOIC_DIR="~/MEGAsync/journal/"
 export STOIC_TEMPLATE="~/MEGAsync/journal/template.txt"
 export STOIC_EXT="md"
 ```
-
-
 
 ## OS Support
 This was primary written to be used on Linux, but should work OSX as well. 
