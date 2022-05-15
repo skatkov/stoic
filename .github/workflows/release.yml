@@ -59,8 +59,7 @@ jobs:
           GOOS: ${{ matrix.go_os }}
           GOARCH: ${{ matrix.go_arch }}
         run: |
-          source ./run.sh
-          run_build ${{ github.event.inputs.release_id }} ${{ github.sha }}
+          go build -ldflags "-X 'main.BinaryVersion=${{ github.event.inputs.release_id }}' -X 'main.BinaryBuildHash=${{ github.sha }}'" -o ./out/stoic stoic.go
       - name: Upload binaries
         uses: actions/upload-release-asset@v1 # https://github.com/actions/upload-release-asset
         env:
