@@ -14,7 +14,7 @@ Epictetus, great Stoic philospher and slave, once told to his students that "phi
 ## Brief
 After you run 'stoic' command utility will:
 - create or open file <current_year>-<current_month>-<current_day>.txt in a directory of your choosing (default: ~/Journal/).
-- File will open in a editor you defined in $EDITOR global variable (but default is nano)
+- File will open in a editor you defined in $EDITOR global variable (default: nano)
 - It's possible to define template for a new entry
 - Custom file extensions to make use of Markdown and other formats besides TXT.
 
