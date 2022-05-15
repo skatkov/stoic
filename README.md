@@ -19,15 +19,8 @@ After you run 'stoic' command utility will:
 - Custom file extensions to make use of Markdown and other formats besides TXT.
 
 ## Installation
-### Linux
-1. [**Download**](https://github.com/skatkov/stoic/blob/main/stoic)
-   the latest version and unzip
-2. Copy to path, e.g. `mv stoic /usr/local/bin/stoic` (might require `sudo`)
 
-### MacOS, Windows
-1. Make sure to have go installed
-2. Run `go build ./stoic`
-3. Copy to path, e.g. `mv stoic /usr/local/bin/stoic` (might require `sudo`)
+📥 [Installation](INSTALL.md)
 
 ## Configration
 
@@ -42,12 +35,6 @@ export STOIC_DIR="~/MEGAsync/journal/"
 export STOIC_TEMPLATE="~/MEGAsync/journal/template.md"
 export STOIC_EXT="md"
 ```
-
-## OS Support
-This was primary written to be used on Linux, but should work OSX as well. 
-
-Windows is not supported, I haven't touched it for ages.
-
 
 ## Contributions
 This project is my little playground to learn golang. It would be awesome to learn about any improvements that are appropriate for this codebase.

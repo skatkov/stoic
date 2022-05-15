@@ -64,7 +64,7 @@ jobs:
           if [[ "${{ matrix.binary_name }}" != "stoic" ]]; then
             mv ./out/stoic ./out/${{ matrix.binary_name }}
           fi
-          zip -j stoic-${{ matrix.name }}.zip ./out/${{ matrix.binary_name }} ./LICENSE
+          zip -j stoic-${{ matrix.name }}.zip ./out/${{ matrix.binary_name }} ./LICENSE ./INSTALL.md
       - name: Upload binaries
         uses: actions/upload-release-asset@v1 # https://github.com/actions/upload-release-asset
         env:
