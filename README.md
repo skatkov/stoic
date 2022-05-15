@@ -40,3 +40,13 @@ export STOIC_EXT="md"
 This project is my little playground to learn golang. It would be awesome to learn about any improvements that are appropriate for this codebase.
 
 Everyone is welcome to contribute.
+
+## TODO
+I've been brainstorming for possible ideas to implement further and here what I came up with:
+
+- Provide a calendar like view overlayed with existing entries - `stoic entries` 
+- show/edit certain journal entires 
+- Extract Context class (all the code that reads os.Getenv())
+- Extract all entry related code into a Entry model
+- Figure out testing
+- Show app version  - `stoic version`
