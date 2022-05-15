@@ -26,7 +26,6 @@ jobs:
             - [**MacOS** M1 (ARM)](https://github.com/skatkov/stoic/releases/download/${{ github.event.inputs.release_id }}/stoic-mac-arm.zip)
             - [**Linux**](https://github.com/skatkov/stoic/releases/download/${{ github.event.inputs.release_id }}/stoic-linux.zip)
             
-            In order to not miss any updates you can either subscribe to the release notifications on Github (at the top right: “Watch”→“Custom”→“Releases”), or check occasionally by running `klog version`.
           release_name: ${{ github.event.inputs.release_id }}
           prerelease: true
           draft: true
@@ -60,6 +59,12 @@ jobs:
           GOARCH: ${{ matrix.go_arch }}
         run: |
           go build -ldflags "-X 'main.BinaryVersion=${{ github.event.inputs.release_id }}' -X 'main.BinaryBuildHash=${{ github.sha }}'" -o ./out/stoic stoic.go
+      - name: Bundle
+        run: |
+          if [[ "${{ matrix.binary_name }}" != "stoic" ]]; then
+            mv ./out/stoic ./out/${{ matrix.binary_name }}
+          fi
+          zip -j stoic-${{ matrix.name }}.zip ./out/${{ matrix.binary_name }} ./LICENSE
       - name: Upload binaries
         uses: actions/upload-release-asset@v1 # https://github.com/actions/upload-release-asset
         env:
