@@ -23,14 +23,7 @@ func main() {
 		return
 	}
 
-	filepath := dir + timeToFilename(time.Now())
-	template, _ := homedir.Expand(os.Getenv("STOIC_TEMPLATE"))
-
-	if template != "" && !fileExists(filepath) {
-		createFileFromTemplate(filepath, template)
-	}
-
-	openInEditor(filepath)
+	openInEditor(dir + timeToFilename(time.Now()))
 }
 
 func fileExtension() string {
@@ -106,6 +99,12 @@ func timeToFilename(timestamp time.Time) string {
 }
 
 func openInEditor(filename string) error {
+	template, _ := homedir.Expand(os.Getenv("STOIC_TEMPLATE"))
+
+	if template != "" && !fileExists(filename) {
+		createFileFromTemplate(filename, template)
+	}
+
 	var editor = os.Getenv("EDITOR")
 	if editor == "" {
 		editor = DEFAULT_EDITOR
