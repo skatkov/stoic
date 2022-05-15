@@ -1,5 +1,5 @@
 # Stoic
-`stoic` is a plain-text file format command line utility for daily journaling.
+`stoic` is a command line app for daily journaling with plain-text files.
 
 ## Motivation
 There is a recurring theme through biographies of great people - they all had journaling as a hobby.
