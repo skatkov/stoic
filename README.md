@@ -12,11 +12,11 @@ t really need. Plain-text files stored in cloud storage and edited througn nano 
 Epictetus, great Stoic philospher and slave, once told to his students that "philosophy is something one should write down day by day". Hence name of this tool is a reference to this great human and hat tip to practical philosophy called Stoicism.
 
 ## Brief
-After you run 'stoic' command utility will:
-- create or open file <current_year>-<current_month>-<current_day>.txt in a directory of your choosing (default: ~/Journal/).
+After you run `stoic` command utility will:
+- create or open file `<current_year>-<current_month>-<current_day>.txt` in a directory of your choosing (default: ~/Journal/).
 - File will open in a editor you defined in $EDITOR global variable (default: nano)
 - It's possible to define template for a new entry
-- Custom file extensions to make use of Markdown and other formats besides TXT.
+- Plain-text files with any format (txt, md or anything else)
 
 ## Installation
 
@@ -24,13 +24,13 @@ After you run 'stoic' command utility will:
 
 ## Configration
 
-- Editor could be changed  by setting $EDITOR global variable.
+- Editor could be changed by setting $EDITOR global variable.
 - Directory for journal could be changed by setting $STOIC_DIR global variable.
 - Provide file template through $STOIC_TEMPLATE global variable.
 - Provide new extension format through $STOIC_EXT global variables
 
 ```
-export EDITOR="nano"
+export EDITOR="neovim"
 export STOIC_DIR="~/MEGAsync/journal/"
 export STOIC_TEMPLATE="~/MEGAsync/journal/template.md"
 export STOIC_EXT="md"
