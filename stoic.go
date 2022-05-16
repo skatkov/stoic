@@ -93,6 +93,7 @@ func createDirectoryIfMissing(dir string) error {
 
 func timeToFilename(timestamp time.Time) string {
 	year, month, day := timestamp.Date()
+	//FIXME: This should be possible to format correctly, without modification on month variable
 	filename := fmt.Sprintf("%d-%s-%02d", year, strings.ToLower(month.String()[:3]), day)
 
 	return filename + "." + fileExtension()
