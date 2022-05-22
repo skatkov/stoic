@@ -51,3 +51,24 @@ I've been brainstorming for possible implements and here is a rough list of idea
 - Figure out testing
 - Show app version  - `stoic version`
 - export to pdf
+
+
+## Development
+As prerequisite, you need to have the [Go compiler](https://golang.org/doc/install).
+Please check the [`go.mod`](go.mod) file to see what Go version stoic requires.
+
+Fetch the sources:
+
+```
+git clone https://github.com/skatkov/stoic.git
+cd stoic
+```
+
+In order to build the project, run:
+
+```
+go build stoic.go
+```
+
+This automatically resolves the dependencies and compiles the source code into an
+executable for your platform.
