@@ -19,27 +19,3 @@ notifications on [Github](https://github.com/skatkov/stoic) (at the top right:
 
 ## Windows
 Is not supported
-
-
-# Build stoic from sources
-
-Instead of downloading the binaries, you can also build stoic yourself.
-
-As prerequisite, you need to have the [Go compiler](https://golang.org/doc/install).
-Please check the [`go.mod`](go.mod) file to see what Go version stoic requires.
-
-Fetch the sources:
-
-```
-git clone https://github.com/skatkov/stoic.git
-cd stoic
-```
-
-In order to build the project, run:
-
-```
-go build stoic.go
-```
-
-This automatically resolves the dependencies and compiles the source code into an
-executable for your platform.
