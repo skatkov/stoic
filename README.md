@@ -13,7 +13,7 @@ Epictetus, great Stoic philospher and slave, once told to his students that "phi
 
 ## Brief
 Software helps maintain day-to-day journaling habbit by allowing you to:
-- Instantly edit current day entry with one command
+- Instantly edit current day entry with one command in terminal
 - Journal with an plain-text format
 - Use templates for journal entries
 - Works on Linux and OSX. 
