@@ -56,7 +56,7 @@ Everyone is welcome to contribute.
 ## TODO's
 I've been brainstorming for possible improvements and here is a rough list of ideas with no particular order:
 
-- Provide a calendar like view overlayed with existing entries - `stoic entries` 
+- Show a list of entires, format (maybe even as calendar with daily records marked on it?) - `stoic entries` 
 - show/edit certain journal entires 
 - Extract Context class (all the code that reads os.Getenv())
 - Extract all entry related code into a Entry struct
