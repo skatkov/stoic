@@ -25,12 +25,12 @@ Software helps maintain day-to-day journaling habbit by allowing you to:
 ## Usage
 In a terminal of your chosing type following commands:
 
-- `stoic`
-- 
+`stoic`
+
 Will open todays journal entry in editor
 
-- `stoic about`
-- 
+`stoic about`
+ 
 Prints out information about cli app
 
 
