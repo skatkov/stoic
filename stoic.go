@@ -11,6 +11,8 @@ import (
 	homedir "github.com/mitchellh/go-homedir"
 )
 
+const FILE_TEMPLATE = "2006-Jan-02"
+
 const DEFAULT_EDITOR = "nano"
 const DEFAULT_DIRECTORY = "~/Journal/"
 const DEFAULT_EXTENSION = "txt"
@@ -23,7 +25,7 @@ func main() {
 		return
 	}
 
-	openInEditor(dir + timeToFilename(time.Now()))
+	openInEditor(dir + generateFilename())
 }
 
 func fileExtension() string {
@@ -91,12 +93,8 @@ func createDirectoryIfMissing(dir string) error {
 	return nil
 }
 
-func timeToFilename(timestamp time.Time) string {
-	year, month, day := timestamp.Date()
-	//FIXME: This should be possible to format correctly, without modification on month variable
-	filename := fmt.Sprintf("%d-%s-%02d", year, strings.ToLower(month.String()[:3]), day)
-
-	return filename + "." + fileExtension()
+func generateFilename() string {
+	return strings.ToLower(fmt.Sprintf("%s.%s", time.Now().Format(FILE_TEMPLATE), fileExtension()))
 }
 
 func openInEditor(filename string) error {
