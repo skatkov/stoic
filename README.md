@@ -59,6 +59,7 @@ I've been brainstorming for possible implements and here is a rough list of idea
 - Figure out testing
 - export to pdf
 - add support for Windows
+- expose all stoic config variables with `stoic -about` command
 
 
 ## Development
