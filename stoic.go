@@ -21,9 +21,8 @@ const DEFAULT_DIRECTORY = "~/Journal/"
 const DEFAULT_EXTENSION = "txt"
 
 func main() {
-	version := version()
-	if version != "" {
-		fmt.Println(version)
+	if about := about(); about != "" {
+		fmt.Println(about)
 		return
 	}
 
@@ -37,7 +36,7 @@ func main() {
 	openInEditor(dir + generateFilename())
 }
 
-func version() string {
+func about() string {
 	about := flag.Bool("about", false, "display about info")
 	flag.Parse()
 
