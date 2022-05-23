@@ -58,6 +58,7 @@ I've been brainstorming for possible implements and here is a rough list of idea
 - Extract all entry related code into a Entry struct
 - Figure out testing
 - export to pdf
+- add support for Windows
 
 
 ## Development
