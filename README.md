@@ -54,7 +54,7 @@ This project is my little playground to learn golang. It would be awesome to lea
 Everyone is welcome to contribute.
 
 ## TODO's
-I've been brainstorming for possible implements and here is a rough list of ideas:
+I've been brainstorming for possible improvements and here is a rough list of ideas with no particular order:
 
 - Provide a calendar like view overlayed with existing entries - `stoic entries` 
 - show/edit certain journal entires 
