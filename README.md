@@ -49,7 +49,6 @@ I've been brainstorming for possible implements and here is a rough list of idea
 - Extract Context class (all the code that reads os.Getenv())
 - Extract all entry related code into a Entry struct
 - Figure out testing
-- Show app version  - `stoic version`
 - export to pdf
 
 
@@ -72,3 +71,9 @@ go build stoic.go
 
 This automatically resolves the dependencies and compiles the source code into an
 executable for your platform.
+
+To get current binary about info:
+
+```
+./stoic.go -about
+```

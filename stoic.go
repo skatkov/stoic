@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"os"
 	"os/exec"
@@ -11,6 +12,8 @@ import (
 	homedir "github.com/mitchellh/go-homedir"
 )
 
+var BinaryVersion string // Set via build flag
+
 const FILE_TEMPLATE = "2006-Jan-02"
 
 const DEFAULT_EDITOR = "nano"
@@ -18,6 +21,11 @@ const DEFAULT_DIRECTORY = "~/Journal/"
 const DEFAULT_EXTENSION = "txt"
 
 func main() {
+	if about := about(); about != "" {
+		fmt.Println(about)
+		return
+	}
+
 	dir := directory()
 	err := createDirectoryIfMissing(dir)
 	if err != nil {
@@ -26,6 +34,17 @@ func main() {
 	}
 
 	openInEditor(dir + generateFilename())
+}
+
+func about() string {
+	about := flag.Bool("about", false, "display about info")
+	flag.Parse()
+
+	if *about {
+		return fmt.Sprintf("version: %s", BinaryVersion)
+	}
+
+	return ""
 }
 
 func fileExtension() string {
