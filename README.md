@@ -12,22 +12,30 @@ t really need. Plain-text files stored in cloud storage and edited througn nano 
 Epictetus, great Stoic philospher and slave, once told to his students that "philosophy is something one should write down day by day". Hence name of this tool is a reference to this great human and hat tip to practical philosophy called Stoicism.
 
 ## Brief
-After you run `stoic` command utility will:
-- create or open file `<current_year>-<current_month>-<current_day>.txt` in a directory of your choosing (default: ~/Journal/).
-- File will open in a editor you defined in $EDITOR global variable (default: nano)
-- It's possible to define template for a new entry
-- Plain-text files with any format (txt, md or anything else)
+Software helps maintain day-to-day journaling habbit by allowing you to:
+- Instantly edit current day entry with one command in terminal
+- Journal with any plain-text format
+- Use templates for journal entries
+- Works on Linux and OSX. 
 
 ## Installation
 
 📥 [Installation](INSTALL.md)
 
+## Usage
+`stoic`
+Will open todays journal entry in editor
+
+`stoic about`
+Prints out information about cli app
+
+
 ## Configration
 
-- Editor could be changed by setting $EDITOR global variable.
-- Directory for journal could be changed by setting $STOIC_DIR global variable.
+- Editor could be changed by setting $EDITOR global variable. (default: nano)
+- Directory for journal could be changed by setting $STOIC_DIR global variable. (default: ~/Journal/)
 - Provide file template through $STOIC_TEMPLATE global variable.
-- Provide new extension format through $STOIC_EXT global variables
+- Provide new extension format through $STOIC_EXT global variables. (default: txt)
 
 ```
 export EDITOR="neovim"
@@ -50,6 +58,7 @@ I've been brainstorming for possible implements and here is a rough list of idea
 - Extract all entry related code into a Entry struct
 - Figure out testing
 - export to pdf
+- add support for Windows
 
 
 ## Development
@@ -66,14 +75,8 @@ cd stoic
 In order to build the project, run:
 
 ```
-go build stoic.go
+make build
 ```
 
 This automatically resolves the dependencies and compiles the source code into an
 executable for your platform.
-
-To get current binary about info:
-
-```
-./stoic.go -about
-```
