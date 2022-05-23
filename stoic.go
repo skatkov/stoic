@@ -12,7 +12,8 @@ import (
 	homedir "github.com/mitchellh/go-homedir"
 )
 
-var BinaryVersion string // Set via build flag
+var BinaryVersion string   // Set via build flag
+var BinaryBuildHash string // Set via build flag
 
 const FILE_TEMPLATE = "2006-Jan-02"
 
@@ -41,7 +42,7 @@ func about() string {
 	flag.Parse()
 
 	if *about {
-		return fmt.Sprintf("version: %s", BinaryVersion)
+		return fmt.Sprintf("Version: %s", BinaryVersion) + "\n" + fmt.Sprintf("Build Hash: %s", BinaryBuildHash)
 	}
 
 	return ""
