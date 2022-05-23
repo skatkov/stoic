@@ -12,7 +12,8 @@ import (
 	homedir "github.com/mitchellh/go-homedir"
 )
 
-const VERSION = "0.0.1"
+var BinaryVersion string // Set via build flag
+
 const FILE_TEMPLATE = "2006-Jan-02"
 
 const DEFAULT_EDITOR = "nano"
@@ -37,11 +38,11 @@ func main() {
 }
 
 func version() string {
-	version := flag.Bool("version", false, "display version")
+	about := flag.Bool("about", false, "display about info")
 	flag.Parse()
 
-	if *version {
-		return fmt.Sprintf("version: %s", VERSION)
+	if *about {
+		return fmt.Sprintf("version: %s", BinaryVersion)
 	}
 
 	return ""
