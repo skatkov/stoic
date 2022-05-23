@@ -64,7 +64,7 @@ I've been brainstorming for possible improvements and here is a rough list of id
 - export to pdf
 - add support for Windows
 - expose all stoic config variables with `stoic -about` command
-- 'stoic -stats' to receive statistics about journaling (how much % you didn''t journal, average journal lenght and etc)
+- `stoic -stats` to receive statistics about journaling (how much % you didn''t journal, average journal lenght and etc)
 
 
 ## Development
