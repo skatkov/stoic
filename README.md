@@ -13,10 +13,9 @@ Epictetus, great Stoic philospher and slave, once told to his students that "phi
 
 ## Brief
 Software helps maintain day-to-day journaling habbit by allowing you to:
-- edit current day journal entry with one cli command.
-- Pick any plain-text format for your journal
-- You need your journal to be format with a certain template?
-- Console editor will to instantly record your thoughts, without missing a single thought
+- Instantly edit current day entry with one command
+- Journal with an plain-text format
+- Use templates for journal entries
 - Works on Linux and OSX. 
 
 ## Installation
