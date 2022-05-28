@@ -20,6 +20,14 @@ func main() {
 		os.Getenv("STOIC_TEMPLATE"),
 	)
 
+	list := flag.Bool("list", false, "list all entries")
+	flag.Parse()
+
+	if *list {
+		fmt.Println("Listing entries...")
+		return
+	}
+
 	if about := about(); about != "" {
 		fmt.Println(about)
 		return
