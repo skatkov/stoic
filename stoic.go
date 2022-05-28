@@ -21,6 +21,8 @@ func main() {
 	)
 
 	list := flag.Bool("list", false, "list all entries")
+	about := flag.Bool("about", false, "display about info")
+
 	flag.Parse()
 
 	if *list {
@@ -28,23 +30,12 @@ func main() {
 		return
 	}
 
-	if about := about(); about != "" {
-		fmt.Println(about)
+	if *about {
+		fmt.Println(fmt.Sprintf("Version: %s", BinaryVersion) + "\n" + fmt.Sprintf("Build Hash: %s", BinaryBuildHash))
 		return
 	}
 
 	entry := stoic.NewEntry(ctx, time.Now())
 
 	_ = ctx.OpenInEditor(entry.Filepath())
-}
-
-func about() string {
-	about := flag.Bool("about", false, "display about info")
-	flag.Parse()
-
-	if *about {
-		return fmt.Sprintf("Version: %s", BinaryVersion) + "\n" + fmt.Sprintf("Build Hash: %s", BinaryBuildHash)
-	}
-
-	return ""
 }
