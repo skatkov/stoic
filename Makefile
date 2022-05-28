@@ -9,6 +9,10 @@ build:
 format:
 	go fmt ./...
 
+# Run linter
+lint:
+	golangci-lint run
+
 # Run CLI from sources “on the fly”
 # Passes through all input args
 cli:

@@ -70,7 +70,7 @@ func (ctx *context) OpenInEditor(filepath string) error {
 	}
 
 	if ctx.Template() != "" && !fileExists(filepath) {
-		createFileFromTemplate(filepath, ctx.Template())
+		_ = createFileFromTemplate(filepath, ctx.Template())
 	}
 
 	cmd := exec.Command(ctx.editor, filepath)
