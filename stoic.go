@@ -27,7 +27,7 @@ func main() {
 
 	entry := stoic.NewEntry(ctx, time.Now())
 
-	ctx.OpenInEditor(entry.Filepath())
+	_ = ctx.OpenInEditor(entry.Filepath())
 }
 
 func about() string {
