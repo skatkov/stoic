@@ -1,6 +1,7 @@
 package stoic
 
 import (
+	"os/user"
 	"testing"
 	"time"
 
@@ -9,8 +10,10 @@ import (
 
 func TestNewEntry(t *testing.T) {
 	tm, _ := time.Parse("2006-Jan-02", "2020-Jan-01")
-	ctx := NewContext("", "", "")
+	ctx := NewContext("", "", "", "")
 	e := NewEntry(ctx, tm)
 
-	assert.Equal(t, "~/Journal/2020-jan-01.txt", e.Filepath())
+	homeDir, _ := user.Current()
+
+	assert.Equal(t, homeDir.HomeDir+"/Journal/2020-jan-01.txt", e.Filepath())
 }
