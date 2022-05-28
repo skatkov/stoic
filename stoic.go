@@ -34,7 +34,7 @@ func main() {
 		return
 	}
 
-	openInEditor(dir + generateFilename())
+	openInEditor(dir + generateFilename(time.Now()))
 }
 
 func about() string {
@@ -113,8 +113,8 @@ func createDirectoryIfMissing(dir string) error {
 	return nil
 }
 
-func generateFilename() string {
-	return strings.ToLower(fmt.Sprintf("%s.%s", time.Now().Format(FILE_TEMPLATE), fileExtension()))
+func generateFilename(time time.Time) string {
+	return strings.ToLower(fmt.Sprintf("%s.%s", time.Format(FILE_TEMPLATE), fileExtension()))
 }
 
 func openInEditor(filename string) error {
