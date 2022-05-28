@@ -14,6 +14,10 @@ type Entry interface {
 	Filename() string
 	Filepath() string
 }
+type entry struct {
+	directory  string
+	created_at time.Time
+}
 
 func NewEntry(time time.Time, dir string) Entry {
 	return &entry{
@@ -21,12 +25,6 @@ func NewEntry(time time.Time, dir string) Entry {
 		created_at: time,
 	}
 }
-
-type entry struct {
-	directory  string
-	created_at time.Time
-}
-
 func (e *entry) Filename() string {
 	return strings.ToLower(fmt.Sprintf("%s.%s", time.Now().Format(FILE_TEMPLATE), fileExtension()))
 }
