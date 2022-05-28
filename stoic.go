@@ -6,14 +6,14 @@ import (
 	"os"
 	"time"
 
-	stoic "github.com/skatkov/stoic/src"
+	. "github.com/skatkov/stoic/src"
 )
 
 var BinaryVersion string   // Set via build flag
 var BinaryBuildHash string // Set via build flag
 
 func main() {
-	ctx := stoic.NewContext(
+	ctx := NewContext(
 		os.Getenv("STOIC_DIR"),
 		os.Getenv("STOIC_EXT"),
 		os.Getenv("EDITOR"),
@@ -35,7 +35,5 @@ func main() {
 		return
 	}
 
-	entry := stoic.NewEntry(ctx, time.Now())
-
-	_ = ctx.OpenInEditor(entry.Filepath())
+	_ = ctx.OpenInEditor(NewEntry(ctx, time.Now()))
 }
