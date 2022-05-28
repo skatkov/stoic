@@ -26,7 +26,7 @@ func NewEntry(time time.Time, dir string) Entry {
 	}
 }
 func (e *entry) Filename() string {
-	return strings.ToLower(fmt.Sprintf("%s.%s", time.Now().Format(FILE_TEMPLATE), fileExtension()))
+	return strings.ToLower(fmt.Sprintf("%s.%s", e.created_at.Format(FILE_TEMPLATE), fileExtension()))
 }
 
 func (e *entry) Filepath() string {

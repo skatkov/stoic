@@ -10,16 +10,14 @@ import (
 	"time"
 
 	homedir "github.com/mitchellh/go-homedir"
+	stoic "github.com/skatkov/stoic/src"
 )
 
 var BinaryVersion string   // Set via build flag
 var BinaryBuildHash string // Set via build flag
 
-const FILE_TEMPLATE = "2006-Jan-02"
-
 const DEFAULT_EDITOR = "nano"
 const DEFAULT_DIRECTORY = "~/Journal/"
-const DEFAULT_EXTENSION = "txt"
 
 func main() {
 	if about := about(); about != "" {
@@ -34,7 +32,14 @@ func main() {
 		return
 	}
 
-	openInEditor(dir + generateFilename(time.Now()))
+	entry := stoic.NewEntry(time.Now(), dir)
+	template, _ := homedir.Expand(os.Getenv("STOIC_TEMPLATE"))
+
+	if template != "" && !fileExists(entry.Filepath()) {
+		createFileFromTemplate(entry.Filepath(), template)
+	}
+
+	openInEditor(entry.Filepath())
 }
 
 func about() string {
@@ -46,16 +51,6 @@ func about() string {
 	}
 
 	return ""
-}
-
-func fileExtension() string {
-	extension := os.Getenv("STOIC_EXT")
-
-	if extension == "" {
-		extension = DEFAULT_EXTENSION
-	}
-
-	return extension
 }
 
 func readFile(filename string) (string, error) {
@@ -113,17 +108,7 @@ func createDirectoryIfMissing(dir string) error {
 	return nil
 }
 
-func generateFilename(time time.Time) string {
-	return strings.ToLower(fmt.Sprintf("%s.%s", time.Format(FILE_TEMPLATE), fileExtension()))
-}
-
 func openInEditor(filename string) error {
-	template, _ := homedir.Expand(os.Getenv("STOIC_TEMPLATE"))
-
-	if template != "" && !fileExists(filename) {
-		createFileFromTemplate(filename, template)
-	}
-
 	var editor = os.Getenv("EDITOR")
 	if editor == "" {
 		editor = DEFAULT_EDITOR
