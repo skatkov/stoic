@@ -2,43 +2,29 @@ package stoic
 
 import (
 	"fmt"
-	"os"
 	"strings"
 	"time"
 )
 
 const FILE_TEMPLATE = "2006-Jan-02"
-const DEFAULT_EXTENSION = "txt"
 
 type Entry interface {
-	Filename() string
 	Filepath() string
 }
 type entry struct {
 	directory  string
 	created_at time.Time
+	filename   string
 }
 
-func NewEntry(time time.Time, dir string) Entry {
+func NewEntry(ctx Context, time time.Time) Entry {
 	return &entry{
-		directory:  dir,
+		filename:   strings.ToLower(fmt.Sprintf("%s.%s", time.Format(FILE_TEMPLATE), ctx.FileExtension())),
+		directory:  ctx.Directory(),
 		created_at: time,
 	}
 }
-func (e *entry) Filename() string {
-	return strings.ToLower(fmt.Sprintf("%s.%s", e.created_at.Format(FILE_TEMPLATE), fileExtension()))
-}
 
 func (e *entry) Filepath() string {
-	return e.directory + e.Filename()
-}
-
-func fileExtension() string {
-	extension := os.Getenv("STOIC_EXT")
-
-	if extension == "" {
-		extension = DEFAULT_EXTENSION
-	}
-
-	return extension
+	return e.directory + e.filename
 }

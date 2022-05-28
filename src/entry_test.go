@@ -9,8 +9,8 @@ import (
 
 func TestNewEntry(t *testing.T) {
 	tm, _ := time.Parse("2006-Jan-02", "2020-Jan-01")
-	e := NewEntry(tm, "~/Journal/")
+	ctx := NewContext("", "", "")
+	e := NewEntry(ctx, tm)
 
-	assert.Equal(t, "2020-jan-01.md", e.Filename())
-	assert.Equal(t, "~/Journal/2020-jan-01.md", e.Filepath())
+	assert.Equal(t, "~/Journal/2020-jan-01.txt", e.Filepath())
 }
