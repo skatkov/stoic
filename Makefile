@@ -13,3 +13,7 @@ format:
 # Passes through all input args
 cli:
 	go run stoic.go "$@"
+
+# Execute tests
+test:
+	go test ./...
