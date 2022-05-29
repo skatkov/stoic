@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	stoic "github.com/skatkov/stoic/src"
+	stoic "github.com/skatkov/stoic/internal"
 )
 
 var BinaryVersion string   // Set via build flag
