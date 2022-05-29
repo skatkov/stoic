@@ -28,16 +28,19 @@ brew tap skatkov/tap && brew install skatkov/tap/stoic
 If you want to download executable on your own, then there is another 📥 [Installation](INSTALL.md) instruction that comes with release.
 
 ## Usage
-In a terminal of your chosing type following commands:
+Run following commands in a terminal:
 
 `stoic`
 
 Will open todays journal entry in editor
 
-`stoic about`
+`stoic -about`
  
 Prints out information about cli app
 
+`stoic -list` (work in progress)
+
+Lists all existing entries and allows to pick one for edit.
 
 ## Configration
 
