@@ -19,8 +19,13 @@ Software helps maintain day-to-day journaling habbit by allowing you to:
 - Works on Linux and OSX. 
 
 ## Installation
+Fast installation is possible through [brew](https://brew.sh/) on Linux or MacOS.
 
-📥 [Installation](INSTALL.md)
+```
+brew tap skatkov/tap && brew install skatkov/tap/stoic
+```
+
+If you want to download executable on your own, then there is another 📥 [Installation](INSTALL.md) instruction that comes with release.
 
 ## Usage
 In a terminal of your chosing type following commands:
@@ -58,12 +63,9 @@ I've been brainstorming for possible improvements and here is a rough list of id
 
 - Show a list of entires, format (maybe even as calendar with daily records marked on it?) - `stoic entries` 
 - show/edit certain journal entires 
-- Extract Context class (all the code that reads os.Getenv())
-- Extract all entry related code into a Entry struct
-- Figure out testing
+- Handle Errors better
 - export to pdf
 - add support for Windows
-- expose all stoic config variables with `stoic -about` command
 - `stoic -stats` to receive statistics about journaling (how much % you didn''t journal, average journal lenght and etc)
 
 
