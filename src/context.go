@@ -19,7 +19,7 @@ type Context interface {
 	FileExtension() string
 	Template() string
 	Editor() string
-	OpenInEditor(filepath string) error
+	OpenInEditor(entry Entry) error
 }
 
 type context struct {
@@ -30,7 +30,7 @@ type context struct {
 }
 
 func NewContext(homeDir string, fileExtension string, editor string, template string) Context {
-	directory := directory(homeDir)
+	directory := extend_directory(homeDir)
 
 	if fileExtension == "" {
 		fileExtension = DEFAULT_EXTENSION
@@ -62,18 +62,18 @@ func (ctx *context) Editor() string {
 	return ctx.editor
 }
 
-func (ctx *context) OpenInEditor(filepath string) error {
+func (ctx *context) OpenInEditor(entry Entry) error {
 	err := createDirectoryIfMissing(ctx.directory)
 	if err != nil {
 		fmt.Println(err)
 		return err
 	}
 
-	if ctx.Template() != "" && !fileExists(filepath) {
-		_ = createFileFromTemplate(filepath, ctx.Template())
+	if ctx.Template() != "" && !fileExists(entry.Filepath()) {
+		_ = createFileFromTemplate(entry.Filepath(), ctx.Template())
 	}
 
-	cmd := exec.Command(ctx.editor, filepath)
+	cmd := exec.Command(ctx.editor, entry.Filepath())
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
@@ -127,7 +127,7 @@ func (ctx *context) Template() string {
 	return ctx.template
 }
 
-func directory(dir string) string {
+func extend_directory(dir string) string {
 	directory := dir
 
 	if directory == "" {

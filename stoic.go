@@ -20,23 +20,16 @@ func main() {
 		os.Getenv("STOIC_TEMPLATE"),
 	)
 
-	if about := about(); about != "" {
-		fmt.Println(about)
-		return
-	}
-
-	entry := stoic.NewEntry(ctx, time.Now())
-
-	_ = ctx.OpenInEditor(entry.Filepath())
-}
-
-func about() string {
-	about := flag.Bool("about", false, "display about info")
+	aboutFlag := flag.Bool("about", false, "display about info")
 	flag.Parse()
 
-	if *about {
-		return fmt.Sprintf("Version: %s", BinaryVersion) + "\n" + fmt.Sprintf("Build Hash: %s", BinaryBuildHash)
+	if *aboutFlag {
+		about_message := fmt.Sprintf("Version: %s \n", BinaryVersion)
+		about_message += fmt.Sprintf("Build Hash: %s \n", BinaryBuildHash)
+
+		fmt.Println(about_message)
+		return //We're done here
 	}
 
-	return ""
+	_ = ctx.OpenInEditor(stoic.NewEntry(ctx, time.Now()))
 }
