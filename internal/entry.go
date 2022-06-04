@@ -18,6 +18,19 @@ type entry struct {
 }
 
 func NewEntry(ctx Context, time time.Time) Entry {
+	return newEntry(ctx, time)
+}
+
+func NewEntryFromString(ctx Context, stringTime string) (Entry, error) {
+	time, err := time.Parse(FILE_TEMPLATE, stringTime)
+	if err != nil {
+		return nil, fmt.Errorf("time parse error: %w", err)
+	}
+
+	return newEntry(ctx, time), nil
+}
+
+func newEntry(ctx Context, time time.Time) Entry {
 	return &entry{
 		filename:   strings.ToLower(fmt.Sprintf("%s.%s", time.Format(FILE_TEMPLATE), ctx.FileExtension())),
 		directory:  ctx.Directory(),

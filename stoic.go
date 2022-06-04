@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"os"
 	"time"
 
@@ -21,6 +22,7 @@ func main() {
 	)
 
 	aboutFlag := flag.Bool("about", false, "display about info")
+	editFlag := flag.String("edit", "", "edit journal by filename")
 	flag.Parse()
 
 	if *aboutFlag {
@@ -29,6 +31,16 @@ func main() {
 
 		fmt.Println(about_message)
 		return //We're done here
+	}
+
+	if *editFlag != "" {
+		entry, err := stoic.NewEntryFromString(ctx, *editFlag)
+		if err != nil {
+			log.Fatalf("invalid journal filename: %s", err)
+		}
+		_ = ctx.OpenInEditor(entry)
+
+		return
 	}
 
 	_ = ctx.OpenInEditor(stoic.NewEntry(ctx, time.Now()))
