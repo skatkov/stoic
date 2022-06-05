@@ -3,6 +3,7 @@ package stoic
 import (
 	"bufio"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"os/exec"
 	"strings"
@@ -20,6 +21,7 @@ type Context interface {
 	Template() string
 	Editor() string
 	OpenInEditor(entry Entry) error
+	ListFiles() []string
 }
 
 type context struct {
@@ -54,6 +56,19 @@ func (ctx *context) Directory() string     { return ctx.directory }
 func (ctx *context) FileExtension() string { return ctx.fileExtension }
 func (ctx *context) Editor() string        { return ctx.editor }
 func (ctx *context) Template() string      { return ctx.template }
+
+func (ctx *context) ListFiles() []string {
+	files, _ := ioutil.ReadDir(ctx.directory)
+
+	var filenames []string
+	for _, file := range files {
+		if strings.HasPrefix(file.Name(), ctx.fileExtension) {
+			filenames = append(filenames, file.Name())
+		}
+	}
+
+	return filenames
+}
 
 func (ctx *context) OpenInEditor(entry Entry) error {
 	err := createDirectoryIfMissing(ctx.directory)
