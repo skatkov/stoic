@@ -50,17 +50,10 @@ func NewContext(homeDir string, fileExtension string, editor string, template st
 	}
 }
 
-func (ctx *context) Directory() string {
-	return ctx.directory
-}
-
-func (ctx *context) FileExtension() string {
-	return ctx.fileExtension
-}
-
-func (ctx *context) Editor() string {
-	return ctx.editor
-}
+func (ctx *context) Directory() string     { return ctx.directory }
+func (ctx *context) FileExtension() string { return ctx.fileExtension }
+func (ctx *context) Editor() string        { return ctx.editor }
+func (ctx *context) Template() string      { return ctx.template }
 
 func (ctx *context) OpenInEditor(entry Entry) error {
 	err := createDirectoryIfMissing(ctx.directory)
@@ -121,10 +114,6 @@ func readFile(filename string) (string, error) {
 	}
 
 	return strings.Join(lines, "\n"), nil
-}
-
-func (ctx *context) Template() string {
-	return ctx.template
 }
 
 func extend_directory(dir string) string {
