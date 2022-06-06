@@ -30,7 +30,7 @@ type context struct {
 }
 
 func NewContext(homeDir string, fileExtension string, editor string, template string) Context {
-	directory := extend_directory(homeDir)
+	directory := expandDir(homeDir)
 
 	if fileExtension == "" {
 		fileExtension = DEFAULT_EXTENSION
@@ -116,9 +116,7 @@ func readFile(filename string) (string, error) {
 	return strings.Join(lines, "\n"), nil
 }
 
-func extend_directory(dir string) string {
-	directory := dir
-
+func expandDir(directory string) string {
 	if directory == "" {
 		directory, _ = homedir.Expand(DEFAULT_DIRECTORY)
 	} else {
