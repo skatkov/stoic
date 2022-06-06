@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	"time"
 
 	homedir "github.com/mitchellh/go-homedir"
 )
@@ -21,7 +22,7 @@ type Context interface {
 	Template() string
 	Editor() string
 	OpenInEditor(entry Entry) error
-	ListFiles() []string
+	Files() []string
 }
 
 type context struct {
@@ -56,19 +57,6 @@ func (ctx *context) Directory() string     { return ctx.directory }
 func (ctx *context) FileExtension() string { return ctx.fileExtension }
 func (ctx *context) Editor() string        { return ctx.editor }
 func (ctx *context) Template() string      { return ctx.template }
-
-func (ctx *context) ListFiles() []string {
-	files, _ := ioutil.ReadDir(ctx.directory)
-
-	var filenames []string
-	for _, file := range files {
-		if strings.HasSuffix(file.Name(), ctx.fileExtension) {
-			filenames = append(filenames, file.Name())
-		}
-	}
-
-	return filenames
-}
 
 func (ctx *context) OpenInEditor(entry Entry) error {
 	err := createDirectoryIfMissing(ctx.directory)
@@ -139,6 +127,24 @@ func expandDir(directory string) string {
 	}
 
 	return directory + "/"
+}
+
+func (ctx context) Files() []string {
+	files, _ := ioutil.ReadDir(ctx.directory)
+
+	var filenames []string
+	for _, file := range files {
+		if strings.HasSuffix(file.Name(), ctx.fileExtension) {
+			filename := strings.TrimSuffix(file.Name(), "."+ctx.fileExtension)
+
+			_, err := time.Parse(FILE_TEMPLATE, filename)
+			if err == nil {
+				filenames = append(filenames, file.Name())
+			}
+		}
+	}
+
+	return filenames
 }
 
 func createDirectoryIfMissing(dir string) error {

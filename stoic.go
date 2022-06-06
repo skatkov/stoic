@@ -24,7 +24,7 @@ func main() {
 	)
 
 	aboutFlag := flag.Bool("about", false, "display about info")
-	listFlag := flag.Bool("list", false, "display about info")
+	listFlag := flag.Bool("list", false, "list journal entries")
 	flag.Parse()
 
 	if *aboutFlag {

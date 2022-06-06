@@ -1,11 +1,30 @@
 package stoic
 
 import (
+	"os"
 	"os/user"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
+
+func TestFiles(t *testing.T) {
+	current_dir, _ := os.Getwd()
+	test_folder := strings.TrimSuffix(current_dir, "/internal") + "/test/data"
+
+	ctx := NewContext(test_folder+"/journal_with_entry", "", "", "")
+	assert.Equal(t, []string{"2022-jan-01.txt"}, ctx.Files())
+
+	ctx = NewContext(test_folder+"/journal_with_entry", "md", "", "")
+	assert.Empty(t, ctx.Files())
+
+	ctx = NewContext(test_folder+"/journal_with_various_entries", "md", "", "")
+	assert.Equal(t, []string{"1984-jan-25.md"}, ctx.Files())
+
+	ctx = NewContext(test_folder+"/journal_zero", "", "", "")
+	assert.Empty(t, ctx.Files())
+}
 
 func TestNewContext(t *testing.T) {
 	ctx := NewContext("", "", "", "")
