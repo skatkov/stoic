@@ -12,19 +12,13 @@ type Entry interface {
 	Filepath() string
 }
 type entry struct {
-	directory  string
-	created_at time.Time
-	filename   string
+	filepath string
 }
 
 func NewEntry(ctx Context, time time.Time) Entry {
 	return &entry{
-		filename:   strings.ToLower(fmt.Sprintf("%s.%s", time.Format(FILE_TEMPLATE), ctx.FileExtension())),
-		directory:  ctx.Directory(),
-		created_at: time,
+		filepath: ctx.Directory() + strings.ToLower(fmt.Sprintf("%s.%s", time.Format(FILE_TEMPLATE), ctx.FileExtension())),
 	}
 }
 
-func (e *entry) Filepath() string {
-	return e.directory + e.filename
-}
+func (e *entry) Filepath() string { return e.filepath }
