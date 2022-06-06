@@ -64,10 +64,11 @@ Everyone is welcome to contribute.
 ## TODO's
 I've been brainstorming for possible improvements and here is a rough list of ideas with no particular order:
 
-- Show a list of entires, format (maybe even as calendar with daily records marked on it?) - `stoic entries` 
+- A list of recent entries, with ability to edit `stoic -list` 
+- Calendar view for existing records )show dates, mark with green dots if there is a record for that day) - `stoic -cal` (with `bubbletea` tui framework + `cal` utility.
 - show/edit certain journal entires 
 - Handle Errors better
-- export to pdf
+- Use normal CLI framework ([cobra](https://github.com/spf13/cobra) seems popular)
 - add support for Windows
 - `stoic -stats` to receive statistics about journaling (how much % you didn''t journal, average journal lenght and etc)
 
