@@ -48,7 +48,7 @@ export STOIC_EXT="md"
 ```
 
 ## Contributions
-This project is my little playground to learn golang. It would be awesome to learn about any improvements that are appropriate for this codebase.
+This project is my little golang playground. It would be awesome to learn about any improvements that are appropriate for this codebase.
 
 Everyone is welcome to contribute.
 
