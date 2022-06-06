@@ -4,7 +4,7 @@
 ## Brief
 This command console app helps maintain day-to-day journaling habbit by allowing you to:
 - Instantly edit current day entry
-- Journal using any plain-text format (txt, md, xit or anything else)
+- Journal using any plain-text format (txt, md, [xit](https://xit.jotaen.net/) or anything else)
 - Basic templates support
 - Works on Linux and OSX. 
 - Overview of existing entries (in progress)
