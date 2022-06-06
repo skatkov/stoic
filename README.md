@@ -61,6 +61,7 @@ I've been brainstorming for possible improvements and here is a rough list of id
 - Handle Errors better
 - Use normal CLI framework ([cobra](https://github.com/spf13/cobra) seems popular)
 - add support for Windows
+- Add ability to store configuration in dotfiles (not just ENV variables), Including ability to add custom editor, not one defined in $EDITOR
 - `stoic -stats` to receive statistics about journaling (how much % you didn''t journal, average journal lenght and etc)
 
 ## Motivation
