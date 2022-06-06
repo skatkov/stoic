@@ -74,7 +74,7 @@ func main() {
 	}
 }
 
-// ---
+// --- List feature
 
 var docStyle = lipgloss.NewStyle().Margin(1, 2)
 

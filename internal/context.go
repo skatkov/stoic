@@ -62,7 +62,7 @@ func (ctx *context) ListFiles() []string {
 
 	var filenames []string
 	for _, file := range files {
-		if strings.HasPrefix(file.Name(), ctx.fileExtension) {
+		if strings.HasSuffix(file.Name(), ctx.fileExtension) {
 			filenames = append(filenames, file.Name())
 		}
 	}
