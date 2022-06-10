@@ -139,7 +139,7 @@ func (ctx context) Files() []string {
 
 			_, err := time.Parse(FILE_TEMPLATE, filename)
 			if err == nil {
-				filenames = append(filenames, file.Name())
+				filenames = append(filenames, ctx.directory+file.Name())
 			}
 		}
 	}
