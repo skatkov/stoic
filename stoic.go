@@ -97,12 +97,12 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			selectedItem, _ := m.list.SelectedItem().(item)
 
 			_ = OpenFileInEditor(selectedItem.title, m.context)
-			os.Exit(1)
+			os.Exit(0)
 		} else if msg.String() == " " {
 			selectedItem, _ := m.list.SelectedItem().(item)
 
 			_ = OpenFileInEditor(selectedItem.title, m.context)
-			os.Exit(1)
+			os.Exit(0)
 		}
 
 	case tea.WindowSizeMsg:
