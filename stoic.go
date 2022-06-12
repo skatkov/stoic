@@ -39,9 +39,15 @@ func main() {
 		files := ctx.Files()
 
 		for _, file := range files {
+			fileInfo, _ := os.Lstat(file)
+			status := fmt.Sprintf("%s %s %s",
+				fileInfo.ModTime().Format("2006-01-02 15:04:05"),
+				fileInfo.Mode().String(),
+				ConvertBytesToSizeString(fileInfo.Size()))
+
 			items = append(items, item{
 				title: file,
-				desc:  "test",
+				desc:  status,
 			})
 		}
 
@@ -123,4 +129,40 @@ func OpenFileInEditor(filepath string, ctx stoic.Context) error {
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	return cmd.Run()
+}
+
+const (
+	thousand    = 1000
+	ten         = 10
+	fivePercent = 0.0499
+)
+
+// ConvertBytesToSizeString converts a byte count to a human readable string.
+func ConvertBytesToSizeString(size int64) string {
+	if size < thousand {
+		return fmt.Sprintf("%dB", size)
+	}
+
+	suffix := []string{
+		"K", // kilo
+		"M", // mega
+		"G", // giga
+		"T", // tera
+		"P", // peta
+		"E", // exa
+		"Z", // zeta
+		"Y", // yotta
+	}
+
+	curr := float64(size) / thousand
+	for _, s := range suffix {
+		if curr < ten {
+			return fmt.Sprintf("%.1f%s", curr-fivePercent, s)
+		} else if curr < thousand {
+			return fmt.Sprintf("%d%s", int(curr), s)
+		}
+		curr /= thousand
+	}
+
+	return ""
 }
