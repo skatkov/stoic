@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"os"
 	"time"
 
@@ -26,10 +25,8 @@ func main() {
 	flag.Parse()
 
 	if *aboutFlag {
-		about_message := fmt.Sprintf("Version: %s", BinaryVersion) + "\n"
-		about_message += fmt.Sprintf("Build Hash: %s", BinaryBuildHash) + "\n"
-
-		fmt.Println(about_message)
+		cmd := cmd.NewAboutCommand(BinaryVersion, BinaryBuildHash)
+		cmd.Run()
 	} else if *listFlag {
 		cmd := cmd.NewListCommand(ctx)
 		cmd.Run()
