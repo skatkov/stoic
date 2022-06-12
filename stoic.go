@@ -33,7 +33,6 @@ func main() {
 		about_message += fmt.Sprintf("Build Hash: %s \n", BinaryBuildHash)
 
 		fmt.Println(about_message)
-		return //We're done here
 	} else if *listFlag {
 		var items []list.Item
 		files := ctx.Files()
