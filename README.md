@@ -29,7 +29,7 @@ Will open todays journal entry in editor
  
 Prints out information about cli app
 
-`stoic -list` (work in progress)
+`stoic -list` (beta)
 
 Lists all existing entries and allows to pick one for edit.
 
