@@ -55,7 +55,6 @@ Everyone is welcome to contribute.
 ## TODO's
 I've been brainstorming for possible improvements and here is a rough list of ideas with no particular order:
 
-- A list of recent entries, with ability to edit `stoic -list` 
 - Calendar view for existing records )show dates, mark with green dots if there is a record for that day) - `stoic -cal` (with `bubbletea` tui framework + `cal` utility.
 - show/edit certain journal entires 
 - Handle Errors better
