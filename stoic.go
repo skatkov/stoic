@@ -44,7 +44,10 @@ func main() {
 			})
 		}
 
-		m := model{list: list.New(items, list.NewDefaultDelegate(), 0, 0)}
+		m := model{
+			list:    list.New(items, list.NewDefaultDelegate(), 0, 0),
+			context: ctx,
+		}
 		m.list.Title = "Journal Entries"
 
 		p := tea.NewProgram(m, tea.WithAltScreen())
@@ -71,7 +74,8 @@ func (i item) Description() string { return i.desc }
 func (i item) FilterValue() string { return i.title }
 
 type model struct {
-	list list.Model
+	list    list.Model
+	context stoic.Context
 }
 
 func (m model) Init() tea.Cmd {
@@ -83,7 +87,12 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	case tea.KeyMsg:
 		if msg.String() == "ctrl+c" {
 			return m, tea.Quit
+		} else if msg.String() == "enter" {
+			fmt.Println("enter was pressed")
+		} else if msg.String() == " " {
+			fmt.Println("space was pressed")
 		}
+
 	case tea.WindowSizeMsg:
 		h, v := docStyle.GetFrameSize()
 		m.list.SetSize(msg.Width-h, msg.Height-v)
