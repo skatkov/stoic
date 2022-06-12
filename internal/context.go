@@ -3,9 +3,11 @@ package stoic
 import (
 	"bufio"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"os/exec"
 	"strings"
+	"time"
 
 	homedir "github.com/mitchellh/go-homedir"
 )
@@ -20,6 +22,7 @@ type Context interface {
 	Template() string
 	Editor() string
 	OpenInEditor(entry Entry) error
+	Files() []string
 }
 
 type context struct {
@@ -124,6 +127,24 @@ func expandDir(directory string) string {
 	}
 
 	return directory + "/"
+}
+
+func (ctx context) Files() []string {
+	files, _ := ioutil.ReadDir(ctx.directory)
+
+	var filenames []string
+	for _, file := range files {
+		if strings.HasSuffix(file.Name(), ctx.fileExtension) {
+			filename := strings.TrimSuffix(file.Name(), "."+ctx.fileExtension)
+
+			_, err := time.Parse(FILE_TEMPLATE, filename)
+			if err == nil {
+				filenames = append(filenames, ctx.directory+file.Name())
+			}
+		}
+	}
+
+	return filenames
 }
 
 func createDirectoryIfMissing(dir string) error {
