@@ -47,23 +47,6 @@ export STOIC_TEMPLATE="~/MEGAsync/journal/template.md"
 export STOIC_EXT="md"
 ```
 
-## Contributions
-This project is my little golang playground. It would be awesome to learn about any improvements that are appropriate for this codebase.
-
-Everyone is welcome to contribute.
-
-## TODO's
-I've been brainstorming for possible improvements and here is a rough list of ideas with no particular order:
-
-- Calendar view for existing records )show dates, mark with green dots if there is a record for that day) - `stoic -cal` (with `bubbletea` tui framework + `cal` utility.
-- show/edit certain journal entires 
-- Use GoReleaser to automate all the routine (homebrew tap, building)
-- Handle Errors better
-- Use normal CLI framework ([cobra](https://github.com/spf13/cobra) seems popular)
-- add support for Windows
-- Add ability to store configuration in dotfiles (not just ENV variables), Including ability to add custom editor, not one defined in $EDITOR
-- `stoic -stats` to receive statistics about journaling (how much % you didn''t journal, average journal lenght and etc)
-
 ## Motivation
 There is a recurring theme through biographies of great people - they all had journaling as a hobby.
 
@@ -93,3 +76,20 @@ make build
 
 This automatically resolves the dependencies and compiles the source code into an
 executable for your platform.
+
+## Contributions
+This project is my little golang playground. It would be awesome to learn about any improvements that are appropriate for this codebase.
+
+Everyone is welcome to contribute.
+
+## TODO's
+I've been brainstorming for possible improvements and here is a rough list of ideas with no particular order:
+
+- Calendar view for existing records )show dates, mark with green dots if there is a record for that day) - `stoic -cal` (with `bubbletea` tui framework + `cal` utility.
+- show/edit certain journal entires 
+- Use GoReleaser to automate all the routine (homebrew tap, building)
+- Handle Errors better
+- Use normal CLI framework ([cobra](https://github.com/spf13/cobra) seems popular)
+- add support for Windows
+- Add ability to store configuration in dotfiles (not just ENV variables), Including ability to add custom editor, not one defined in $EDITOR
+- `stoic -stats` to receive statistics about journaling (how much % you didn''t journal, average journal lenght and etc)
