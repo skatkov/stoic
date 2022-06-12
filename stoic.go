@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"os/exec"
 	"time"
 
 	"github.com/charmbracelet/bubbles/list"
@@ -88,9 +89,15 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		if msg.String() == "ctrl+c" {
 			return m, tea.Quit
 		} else if msg.String() == "enter" {
-			fmt.Println("enter was pressed")
+			selectedItem, _ := m.list.SelectedItem().(item)
+
+			OpenFileInEditor(selectedItem.title, m.context)
+			os.Exit(1)
 		} else if msg.String() == " " {
-			fmt.Println("space was pressed")
+			selectedItem, _ := m.list.SelectedItem().(item)
+
+			OpenFileInEditor(selectedItem.title, m.context)
+			os.Exit(1)
 		}
 
 	case tea.WindowSizeMsg:
@@ -105,4 +112,15 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 func (m model) View() string {
 	return docStyle.Render(m.list.View())
+}
+
+type FinishedMsg struct{ err error }
+
+func OpenFileInEditor(filepath string, ctx stoic.Context) error {
+
+	cmd := exec.Command(ctx.Editor(), filepath)
+	cmd.Stdin = os.Stdin
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	return cmd.Run()
 }
