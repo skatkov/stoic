@@ -1,13 +1,10 @@
 # Stoic
-`stoic` is a command line app for daily journaling with plain-text files.
-
-## Brief
-This command console app helps maintain day-to-day journaling habbit by allowing you to:
+`stoic` is a command line app for daily journaling with plain-text files. It helps maintain day-to-day journaling habbit by allowing you to:
 - Instantly edit current day entry
 - Journal using any plain-text format (txt, md, [xit](https://xit.jotaen.net/) or anything else)
 - Basic templates support
 - Works on Linux and OSX. 
-- Overview of existing entries (in progress)
+- Overview/filtering of existing entries
 
 ## Installation
 Fast installation is possible through [brew](https://brew.sh/) on Linux or MacOS.
@@ -32,6 +29,9 @@ Prints out information about cli app
 `stoic -list` (beta)
 
 Lists all existing entries and allows to pick one for edit.
+
+`stoic -edit` aka `stoic -show` (in works)
+Open or edit journal entry for any date
 
 ## Configration
 
