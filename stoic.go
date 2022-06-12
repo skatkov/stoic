@@ -29,8 +29,8 @@ func main() {
 	flag.Parse()
 
 	if *aboutFlag {
-		about_message := fmt.Sprintf("Version: %s \n", BinaryVersion)
-		about_message += fmt.Sprintf("Build Hash: %s \n", BinaryBuildHash)
+		about_message := fmt.Sprintf("Version: %s", BinaryVersion) + "\n"
+		about_message += fmt.Sprintf("Build Hash: %s", BinaryBuildHash) + "\n"
 
 		fmt.Println(about_message)
 	} else if *listFlag {
