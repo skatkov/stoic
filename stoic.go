@@ -96,12 +96,12 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		} else if msg.String() == "enter" {
 			selectedItem, _ := m.list.SelectedItem().(item)
 
-			OpenFileInEditor(selectedItem.title, m.context)
+			_ = OpenFileInEditor(selectedItem.title, m.context)
 			os.Exit(1)
 		} else if msg.String() == " " {
 			selectedItem, _ := m.list.SelectedItem().(item)
 
-			OpenFileInEditor(selectedItem.title, m.context)
+			_ = OpenFileInEditor(selectedItem.title, m.context)
 			os.Exit(1)
 		}
 
@@ -118,8 +118,6 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 func (m model) View() string {
 	return docStyle.Render(m.list.View())
 }
-
-type FinishedMsg struct{ err error }
 
 func OpenFileInEditor(filepath string, ctx stoic.Context) error {
 
