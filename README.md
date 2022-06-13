@@ -22,10 +22,6 @@ Run following commands in a terminal:
 
 Will open todays journal entry in editor
 
-`stoic -about`
- 
-Prints out information about cli app
-
 `stoic -list` (beta)
 
 Lists all existing entries and allows to pick one for edit.
@@ -33,6 +29,10 @@ Lists all existing entries and allows to pick one for edit.
 `stoic -edit "yesterday"`
 
 Will open or create file for previous days. Tries to understand natural dates ("2 days ago", "yesterday" and etc.)
+
+`stoic -about`
+ 
+Prints out information about cli app
 
 ## Configuration
 
