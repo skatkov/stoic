@@ -20,8 +20,6 @@ type editCommand struct {
 	date  time.Time
 }
 
-var base = time.Unix(1574687238, 0).UTC()
-
 func NewEditCommand(ctx stoic.Context, value string) EditCommand {
 	date, err := naturaldate.Parse(value, time.Now())
 
