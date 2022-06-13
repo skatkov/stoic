@@ -26,7 +26,7 @@ func NewEditCommand(ctx stoic.Context, value string) EditCommand {
 	fmt.Println("date: " + date.String())
 
 	if err != nil {
-		fmt.Println("Error paring date:", err)
+		fmt.Println("Error parыing date:", err)
 		os.Exit(1)
 	}
 
