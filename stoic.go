@@ -22,6 +22,7 @@ func main() {
 
 	aboutFlag := flag.Bool("about", false, "display about info")
 	listFlag := flag.Bool("list", false, "list journal entries")
+	editFlag := flag.String("edit", "", "edit a journal entry")
 	flag.Parse()
 
 	if *aboutFlag {
@@ -29,6 +30,9 @@ func main() {
 		cmd.Run()
 	} else if *listFlag {
 		cmd := cmd.NewListCommand(ctx)
+		cmd.Run()
+	} else if *editFlag != "" {
+		cmd := cmd.NewEditCommand(ctx, *editFlag)
 		cmd.Run()
 	} else {
 		_ = ctx.OpenInEditor(stoic.NewEntry(ctx, time.Now()))
