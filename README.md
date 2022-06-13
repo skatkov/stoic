@@ -87,7 +87,6 @@ Everyone is welcome to contribute.
 I've been brainstorming for possible improvements and here is a rough list of ideas with no particular order:
 
 - Calendar view for existing records )show dates, mark with green dots if there is a record for that day) - `stoic -cal` (with `bubbletea` tui framework + `cal` utility.
-- show/edit certain journal entires 
 - Use GoReleaser to automate all the routine (homebrew tap, building)
 - Handle Errors better
 - Use normal CLI framework ([cobra](https://github.com/spf13/cobra) seems popular)
