@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.2] - 2022-06-12
+### Adds
+- adds ability to edit entries through -edit command
+
 ## [0.3.1] - 2022-06-12
 ### Change
 - proper exit status for edit files in list

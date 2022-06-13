@@ -30,10 +30,11 @@ Prints out information about cli app
 
 Lists all existing entries and allows to pick one for edit.
 
-`stoic -edit` aka `stoic -show` (in works)
-Open or edit journal entry for any date
+`stoic -edit "yesterday"`
 
-## Configration
+Will open or create file for previous days. Tries to understand natural dates ("2 days ago", "yesterday" and etc.)
+
+## Configuration
 
 - Editor could be changed by setting $EDITOR global variable. (default: nano)
 - Directory for journal could be changed by setting $STOIC_DIR global variable. (default: ~/Journal/)
