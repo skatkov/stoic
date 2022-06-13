@@ -23,8 +23,6 @@ type editCommand struct {
 func NewEditCommand(ctx stoic.Context, value string) EditCommand {
 	date, err := naturaldate.Parse(value, time.Now())
 
-	fmt.Println("date: " + date.String())
-
 	if err != nil {
 		fmt.Println("Error parsing date:", err)
 		os.Exit(1)
