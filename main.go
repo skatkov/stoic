@@ -22,18 +22,18 @@ func main() {
 
 	aboutFlag := flag.Bool("about", false, "display about info")
 	listFlag := flag.Bool("list", false, "list journal entries")
+	quoteFlag := flag.Bool("quote", false, "random quote to inspire ongoing journaling habit")
 	editFlag := flag.String("edit", "", "edit a journal entry")
 	flag.Parse()
 
 	if *aboutFlag {
-		cmd := cmd.NewAboutCommand(BinaryVersion, BinaryBuildHash)
-		cmd.Run()
+		cmd.NewAboutCommand(BinaryVersion, BinaryBuildHash).Run()
 	} else if *listFlag {
-		cmd := cmd.NewListCommand(ctx)
-		cmd.Run()
+		cmd.NewListCommand(ctx).Run()
 	} else if *editFlag != "" {
-		cmd := cmd.NewEditCommand(ctx, *editFlag)
-		cmd.Run()
+		cmd.NewEditCommand(ctx, *editFlag).Run()
+	} else if *quoteFlag {
+		cmd.NewQuoteCommand().Run()
 	} else {
 		_ = ctx.OpenInEditor(stoic.NewEntry(ctx, time.Now()))
 	}

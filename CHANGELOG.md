@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4] - 2022-06-18
+### Adds
+- adding "quote" command to pick a random encouragement to journal
+
 ## [0.3.2] - 2022-06-12
 ### Adds
 - adds ability to edit entries through -edit command
