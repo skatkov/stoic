@@ -3,7 +3,7 @@
 # - The version (e.g.: v1.2)
 # - The build hash (7 chars hex)
 build:
-	go build -ldflags "-X 'main.BinaryVersion=$1' -X 'main.BinaryBuildHash=$2'" -o ./out/stoic stoic.go
+	go build -ldflags "-X 'main.BinaryVersion=$1' -X 'main.BinaryBuildHash=$2'" -o ./out/stoic
 
 # Reformat all code
 format:
@@ -16,7 +16,7 @@ lint:
 # Run CLI from sources “on the fly”
 # Passes through all input args
 cli:
-	go run stoic.go "$@"
+	go run main.go "$@"
 
 # Execute tests
 test:
