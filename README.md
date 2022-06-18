@@ -30,6 +30,10 @@ Lists all existing entries and allows to pick one for edit.
 
 Will open or create file for previous days. Tries to understand natural dates ("2 days ago", "yesterday" and etc.)
 
+`stoic -quote`
+
+Print out a random quote to encourage journaling habit
+
 `stoic -about`
  
 Prints out information about cli app
