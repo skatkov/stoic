@@ -26,15 +26,16 @@ func main() {
 	editFlag := flag.String("edit", "", "edit a journal entry")
 	flag.Parse()
 
-	if *aboutFlag {
+	switch {
+	case *aboutFlag:
 		cmd.NewAboutCommand(BinaryVersion, BinaryBuildHash).Run()
-	} else if *listFlag {
+	case *listFlag:
 		cmd.NewListCommand(ctx).Run()
-	} else if *editFlag != "" {
+	case *editFlag != "":
 		cmd.NewEditCommand(ctx, *editFlag).Run()
-	} else if *quoteFlag {
+	case *quoteFlag:
 		cmd.NewQuoteCommand().Run()
-	} else {
+	default:
 		_ = ctx.OpenInEditor(stoic.NewEntry(ctx, time.Now()))
 	}
 }

@@ -8,7 +8,7 @@ linters:
     - govet # Vet examines Go source code and reports suspicious constructs, such as Printf calls whose arguments do not align with the format string
     - ineffassign # Detects when assignments to existing variables are not used
     - staticcheck # Staticcheck is a go vet on steroids, applying a ton of static analysis checks
-    - structcheck # Finds unused struct fields
+    # - structcheck # Finds unused struct fields
     - typecheck # Like the front-end of a Go compiler, parses and type-checks Go code
     - unused # Checks Go code for unused constants, variables, functions and types
     - varcheck # Finds unused global variables and constants
@@ -17,12 +17,11 @@ linters:
     - errorlint # errorlint is a linter for that can be used to find code that will cause problems with the error wrapping scheme introduced in Go 1.13.
     - goconst # Finds repeated strings that could be replaced by a constant
     - gocritic # Provides diagnostics that check for bugs, performance and style issues.
-    - gosec # Inspects source code for security problems
-    - testpackage # linter that makes you use a separate _test package
+    # - gosec # Inspects source code for security problems
     - unconvert # Remove unnecessary type conversions
     - unparam # Reports unused function parameters
     - usestdlibvars # detect the possibility to use variables/constants from the Go standard library
-    - wastedassign # wastedassign finds wasted assignment statements.
+    # - wastedassign # wastedassign finds wasted assignment statements.
     ## you may want to enable
     #- decorder # check declaration order and count of types, constants, variables and functions
     #- exhaustruct # Checks if all structure fields are initialized

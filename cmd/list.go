@@ -78,20 +78,20 @@ func (m model) Init() tea.Cmd {
 func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
-		if msg.String() == "ctrl+c" {
+		switch {
+		case msg.String() == "ctrl+c":
 			return m, tea.Quit
-		} else if msg.String() == "enter" {
+		case msg.String() == "enter":
 			selectedItem, _ := m.list.SelectedItem().(item)
 
 			_ = OpenFileInEditor(selectedItem.title, m.context)
 			os.Exit(0)
-		} else if msg.String() == " " {
+		case msg.String() == " ":
 			selectedItem, _ := m.list.SelectedItem().(item)
 
 			_ = OpenFileInEditor(selectedItem.title, m.context)
 			os.Exit(0)
 		}
-
 	case tea.WindowSizeMsg:
 		h, v := docStyle.GetFrameSize()
 		m.list.SetSize(msg.Width-h, msg.Height-v)
