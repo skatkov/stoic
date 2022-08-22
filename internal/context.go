@@ -3,7 +3,6 @@ package stoic
 import (
 	"bufio"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"os/exec"
 	"strings"
@@ -130,7 +129,7 @@ func expandDir(directory string) string {
 }
 
 func (ctx context) Files() []string {
-	files, _ := ioutil.ReadDir(ctx.directory)
+	files, _ := os.ReadDir(ctx.directory)
 
 	var filenames []string
 	for _, file := range files {
