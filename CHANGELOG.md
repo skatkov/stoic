@@ -10,7 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Refactoring
 - Remove use of 'ioutil' deprecated class
 - Refactor main and list classes to use switch statement
-- Upgrade target for go lang to 1.19
+- Upgrade target for golang to 1.19
+- Updating all dependencies
 
 ### Add
 - Styling "quote" command with lipgloss
