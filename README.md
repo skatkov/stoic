@@ -1,4 +1,6 @@
 # Stoic
+![stoic](./demo.png)
+
 `stoic` is a command line app for daily journaling with plain-text files. It helps maintain day-to-day journaling habbit by allowing you to:
 - Instantly edit current day entry
 - Journal using any plain-text format (txt, md, [xit](https://xit.jotaen.net/) or anything else)
