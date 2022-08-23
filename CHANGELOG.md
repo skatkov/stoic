@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5] - 2022-08-23
+### Refactoring
+- Remove use of 'ioutil' deprecated class
+- Refactor main and list classes to use switch statement
+- Upgrade target for go lang to 1.19
+
+### Add
+- Styling "quote" command with lipgloss
+
 ## [0.4] - 2022-06-18
 ### Adds
 - adding "quote" command to pick a random encouragement to journal
