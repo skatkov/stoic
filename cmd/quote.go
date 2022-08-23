@@ -3,7 +3,10 @@ package stoic
 import (
 	"fmt"
 	"math/rand"
+	"strings"
 	"time"
+
+	"github.com/charmbracelet/lipgloss"
 )
 
 type quote struct {
@@ -12,6 +15,19 @@ type quote struct {
 }
 
 var quotes = []quote{}
+
+// Style definitions
+var (
+	pageStyle = lipgloss.NewStyle().Padding(1, 2, 1, 2)
+	boxStyle  = lipgloss.NewStyle().
+			Border(lipgloss.RoundedBorder()).
+			BorderForeground(lipgloss.Color("#874BFD")).
+			Padding(1, 0).
+			BorderTop(true).
+			BorderLeft(true).
+			BorderRight(true).
+			BorderBottom(true)
+)
 
 type QuoteCommand interface {
 	Run()
@@ -22,10 +38,11 @@ type quoteCommand struct {
 }
 
 func NewQuoteCommand() QuoteCommand {
-	quotes = append(quotes, quote{
-		content: "Few care now about the marches and countermarches of the Roman commanders. What the centuries have clung to is a notebook of thoughts by a man whose real life was largely unknown who put down in the midnight dimness not the events of the day or the plans of the morrow, but something of far more permanent interest, the ideals and aspirations that a rare spirit lived by.",
-		author:  "Brand Blanshard",
-	},
+	quotes = append(quotes,
+		quote{
+			content: "Few care now about the marches and countermarches of the Roman commanders. What the centuries have clung to is a notebook of thoughts by a man whose real life was largely unknown who put down in the midnight dimness not the events of the day or the plans of the morrow, but something of far more permanent interest, the ideals and aspirations that a rare spirit lived by.",
+			author:  "Brand Blanshard",
+		},
 		quote{
 			content: "Five hundred years later, Leonardo’s notebooks are around to astonish and inspire us. Fifty years from now, our own notebooks, if we work up the initiative to start them, will be around to astonish and inspire our grandchildren, unlike our tweets and Facebook posts.",
 			author:  "Isaacs Newton",
@@ -83,12 +100,20 @@ func NewQuoteCommand() QuoteCommand {
 
 func (c quoteCommand) Run() {
 	rand.Seed(time.Now().Unix())
-	q := c.quotes[rand.Intn(len(c.quotes))]
+	quote := c.quotes[rand.Intn(len(c.quotes))]
+	doc := strings.Builder{}
 
-	fmt.Println("")
-	fmt.Println("---")
-	fmt.Println(q.content)
-	fmt.Println("---")
-	fmt.Println("(c) " + q.author)
-	fmt.Println("")
+	ui := lipgloss.NewStyle().
+		Width(80).
+		PaddingBottom(1).
+		PaddingTop(1).
+		PaddingLeft(3).
+		PaddingRight(3).
+		Align(lipgloss.Center).
+		Render(quote.content)
+
+	doc.WriteString(boxStyle.Render(ui) + "\n")
+	doc.WriteString("\n (c) " + quote.author + "\n")
+
+	fmt.Println(pageStyle.Render(doc.String()))
 }
