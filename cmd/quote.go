@@ -16,7 +16,18 @@ type quote struct {
 
 var quotes = []quote{}
 
-var pageStyle = lipgloss.NewStyle().Padding(1, 2, 1, 2)
+// Style definitions
+var (
+	pageStyle = lipgloss.NewStyle().Padding(1, 2, 1, 2)
+	boxStyle  = lipgloss.NewStyle().
+			Border(lipgloss.RoundedBorder()).
+			BorderForeground(lipgloss.Color("#874BFD")).
+			Padding(1, 0).
+			BorderTop(true).
+			BorderLeft(true).
+			BorderRight(true).
+			BorderBottom(true)
+)
 
 type QuoteCommand interface {
 	Run()
@@ -89,11 +100,20 @@ func NewQuoteCommand() QuoteCommand {
 
 func (c quoteCommand) Run() {
 	rand.Seed(time.Now().Unix())
-	q := c.quotes[rand.Intn(len(c.quotes))]
+	quote := c.quotes[rand.Intn(len(c.quotes))]
 	doc := strings.Builder{}
 
-	doc.WriteString("\n\n" + q.content + "\n\n")
-	doc.WriteString("(c) " + q.author + "\n")
+	ui := lipgloss.NewStyle().
+		Width(80).
+		PaddingBottom(1).
+		PaddingTop(1).
+		PaddingLeft(3).
+		PaddingRight(3).
+		Align(lipgloss.Center).
+		Render(quote.content)
+
+	doc.WriteString(boxStyle.Render(ui) + "\n")
+	doc.WriteString("\n (c) " + quote.author + "\n")
 
 	fmt.Println(pageStyle.Render(doc.String()))
 }
