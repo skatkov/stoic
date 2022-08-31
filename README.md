@@ -20,25 +20,11 @@ If you want to download executable on your own, then there is another 📥 [Inst
 ## Usage
 Run following commands in a terminal:
 
-`stoic`
-
-Will open todays journal entry in editor
-
-`stoic -list` (beta)
-
-Lists all existing entries and allows to pick one for edit.
-
-`stoic -edit "yesterday"`
-
-Will open or create file for previous days. Tries to understand natural dates ("2 days ago", "yesterday" and etc.)
-
-`stoic -quote`
-
-Print out a random quote to encourage journaling habit
-
-`stoic -about`
- 
-Prints out information about cli app
+* `stoic` - opens todays journal entry in editor
+* `stoic -list` (beta) - lists all existing entries and allows to pick one for edit.
+* `stoic -edit "yesterday"` - will open or create file for previous days. Tries to understand natural dates ("2 days ago", "yesterday" and etc.)
+* `stoic -quote` - shows random quote to encourage journaling habit
+* `stoic -about` - shows information about cli app
 
 ## Configuration
 
