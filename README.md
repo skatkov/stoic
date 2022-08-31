@@ -99,3 +99,9 @@ I've been brainstorming for possible improvements and here is a rough list of id
 - add support for Windows
 - Add ability to store configuration in dotfiles (not just ENV variables), Including ability to add custom editor, not one defined in $EDITOR
 - `stoic -stats` to receive statistics about journaling (how much % you didn''t journal, average journal lenght and etc)
+
+## Feedback
+Got some feedback or suggestions? Please open an issue or drop me a note!
+
+* [Twitter](https://twitter.com/5katkov)
+* [Personal Website](https://skatkov.com)
