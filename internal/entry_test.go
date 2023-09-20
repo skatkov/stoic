@@ -15,17 +15,17 @@ func TestNewEntry(t *testing.T) {
 
 	homeDir, _ := user.Current()
 
-	assert.Equal(t, homeDir.HomeDir+"/Journal/2020-jan-01.txt", e.Filepath())
+	assert.Equal(t, homeDir.HomeDir+"/Journal/2020-jan-01.md", e.Filepath())
 }
 
 func TestNewEntryWithExtension(t *testing.T) {
 	tm, _ := time.Parse("2006-Jan-02", "2020-Jan-01")
-	ctx := NewContext("", "md", "", "")
+	ctx := NewContext("", "txt", "", "")
 	e := NewEntry(ctx, tm)
 
 	homeDir, _ := user.Current()
 
-	assert.Equal(t, homeDir.HomeDir+"/Journal/2020-jan-01.md", e.Filepath())
+	assert.Equal(t, homeDir.HomeDir+"/Journal/2020-jan-01.txt", e.Filepath())
 }
 
 func TestNewEntryWithDirectory(t *testing.T) {
@@ -35,5 +35,5 @@ func TestNewEntryWithDirectory(t *testing.T) {
 
 	homeDir, _ := user.Current()
 
-	assert.Equal(t, homeDir.HomeDir+"/Journal/test/2020-jan-01.txt", e.Filepath())
+	assert.Equal(t, homeDir.HomeDir+"/Journal/test/2020-jan-01.md", e.Filepath())
 }

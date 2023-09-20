@@ -14,9 +14,9 @@ func TestFiles(t *testing.T) {
 	test_folder := strings.TrimSuffix(current_dir, "/internal") + "/test/data"
 
 	ctx := NewContext(test_folder+"/journal_with_entry", "", "", "")
-	assert.Equal(t, []string{test_folder + "/journal_with_entry/" + "2022-jan-01.txt"}, ctx.Files())
+	assert.Equal(t, []string{test_folder + "/journal_with_entry/" + "2022-jan-01.md"}, ctx.Files())
 
-	ctx = NewContext(test_folder+"/journal_with_entry", "md", "", "")
+	ctx = NewContext(test_folder+"/journal_with_entry", "txt", "", "")
 	assert.Empty(t, ctx.Files())
 
 	ctx = NewContext(test_folder+"/journal_with_various_entries", "md", "", "")
@@ -31,7 +31,7 @@ func TestNewContext(t *testing.T) {
 	homeDir, _ := user.Current()
 
 	assert.Equal(t, homeDir.HomeDir+"/Journal/", ctx.Directory())
-	assert.Equal(t, "txt", ctx.FileExtension())
+	assert.Equal(t, "md", ctx.FileExtension())
 	assert.Equal(t, "nano", ctx.Editor())
 	assert.Equal(t, "", ctx.Template())
 }
@@ -41,7 +41,7 @@ func TestNewContextWithEditor(t *testing.T) {
 }
 
 func TestNewContextWithExtension(t *testing.T) {
-	assert.Equal(t, "md", NewContext("", "md", "", "").FileExtension())
+	assert.Equal(t, "txt", NewContext("", "txt", "", "").FileExtension())
 }
 
 func TestNewContextWithDirectory(t *testing.T) {

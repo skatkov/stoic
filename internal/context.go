@@ -13,7 +13,7 @@ import (
 
 const DEFAULT_EDITOR = "nano"
 const DEFAULT_DIRECTORY = "~/Journal/"
-const DEFAULT_EXTENSION = "txt"
+const DEFAULT_EXTENSION = "md"
 
 type Context interface {
 	Directory() string

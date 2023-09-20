@@ -31,7 +31,7 @@ Run following commands in a terminal:
 - Editor could be changed by setting $EDITOR global variable. (default: nano)
 - Directory for journal could be changed by setting $STOIC_DIR global variable. (default: ~/Journal/)
 - Provide file template through $STOIC_TEMPLATE global variable.
-- Provide new extension format through $STOIC_EXT global variables. (default: txt)
+- Provide new extension format through $STOIC_EXT global variables. (default: md)
 
 ```
 export EDITOR="neovim"
