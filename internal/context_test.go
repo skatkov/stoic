@@ -14,13 +14,13 @@ func TestFiles(t *testing.T) {
 	test_folder := strings.TrimSuffix(current_dir, "/internal") + "/test/data"
 
 	ctx := NewContext(test_folder+"/journal_with_entry", "", "", "")
-	assert.Equal(t, []string{test_folder + "/journal_with_entry/" + "2022-jan-01.md"}, ctx.Files())
+	assert.Equal(t, []string{test_folder + "/journal_with_entry/" + "2022-01-01.md"}, ctx.Files())
 
 	ctx = NewContext(test_folder+"/journal_with_entry", "txt", "", "")
 	assert.Empty(t, ctx.Files())
 
 	ctx = NewContext(test_folder+"/journal_with_various_entries", "md", "", "")
-	assert.Equal(t, []string{test_folder + "/journal_with_various_entries/" + "1984-jan-25.md"}, ctx.Files())
+	assert.Equal(t, []string{test_folder + "/journal_with_various_entries/" + "1984-01-25.md"}, ctx.Files())
 
 	ctx = NewContext(test_folder+"/journal_zero", "", "", "")
 	assert.Empty(t, ctx.Files())

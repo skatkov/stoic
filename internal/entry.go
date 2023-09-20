@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-const FILE_TEMPLATE = "2006-Jan-02"
+const FILE_TEMPLATE = "2006-01-02"
 
 type Entry interface {
 	Filepath() string
