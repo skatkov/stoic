@@ -5,7 +5,7 @@
 - Instantly edit current day entry
 - Journal using any plain-text format (txt, md, [xit](https://xit.jotaen.net/) or anything else)
 - Basic templates support
-- Works on Linux and OSX. 
+- Works on Linux and OSX
 - Overview/filtering of existing entries
 
 ## Installation
@@ -49,6 +49,13 @@ Existing software for journaling and note taking is too slow to load and filled 
 t really need. Plain-text files stored in cloud storage and edited througn nano is more than enough. But some recurring manual work was still required - create new daily file and  modify according to my template. This command line utility completely removes that manual work for me. 
 
 Epictetus, great Stoic philospher and slave, once told to his students that "philosophy is something one should write down day by day". Hence name of this tool is a reference to this great human and hat tip to practical philosophy called Stoicism.
+
+## Obsidian integration
+I wrote this tool our of frustration with existing note taking apps (everything has to be in the cloud these days), but there are other apps that followed similar design choices as `stoic` did.
+
+I'm now using [Obsidian](https://obsidian.md/) as a fully featured writing app. Obsidian comes with some core plugins that you can enable, one of those is "Daily Notes" that does something similar to `stoic`. Notherless I still keep using `stoic` as a companion cli app to Obisidian, with light configuration changes they play perfectly together.
+
+TODO: DESCRIBE HOW TO CONFIGURE "DAILY NOTES" PLUGIN TO INTEGRATE WITH STOIC APP.
 
 ## Development
 As prerequisite, you need to have the [Go compiler](https://golang.org/doc/install).
