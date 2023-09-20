@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"os"
 	"time"
 
@@ -36,6 +37,10 @@ func main() {
 	case *quoteFlag:
 		cmd.NewQuoteCommand().Run()
 	default:
-		_ = ctx.OpenInEditor(stoic.NewEntry(ctx, time.Now()))
+		err := ctx.OpenInEditor(stoic.NewEntry(ctx, time.Now()))
+
+		if err != nil {
+			fmt.Println(err)
+		}
 	}
 }
