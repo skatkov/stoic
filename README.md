@@ -90,6 +90,9 @@ To build the project, run:
 
 This automatically resolves the dependencies and compiles the source code into an executable for your platform.
 
+## Releasing
+TODO: Write a section how to release this app to public
+
 ## Contributions
 
 This project is my little Go playground. It would be awesome to learn about any appropriate improvements for this codebase.
