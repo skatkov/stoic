@@ -55,7 +55,12 @@ I wrote this tool our of frustration with existing note taking apps (everything 
 
 I'm now using [Obsidian](https://obsidian.md/) as a fully featured writing app. Obsidian comes with some core plugins that you can enable, one of those is "Daily Notes" that does something similar to `stoic`. Notherless I still keep using `stoic` as a companion cli app to Obisidian, with light configuration changes they play perfectly together.
 
-TODO: DESCRIBE HOW TO CONFIGURE "DAILY NOTES" PLUGIN TO INTEGRATE WITH STOIC APP.
+With 0.6 version of stoic a lot of settings are aligned with those Obsidian default to. In my case, only two settings that I tweaked are:
+```
+export STOIC_DIR="~/Obsidian/journal"
+export STOIC_TEMPLATE="~/Obsidian/journal/template.md" 
+```
+
 
 ## Development
 As prerequisite, you need to have the [Go compiler](https://golang.org/doc/install).
