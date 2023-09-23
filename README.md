@@ -5,7 +5,7 @@
 - Instantly edit current day entry
 - Journal using any plain-text format (txt, md, [xit](https://xit.jotaen.net/) or anything else)
 - Basic templates support
-- Works on Linux and OSX. 
+- Works on Linux and OSX
 - Overview/filtering of existing entries
 
 ## Installation
@@ -49,6 +49,24 @@ Existing software for journaling and note taking is too slow to load and filled 
 t really need. Plain-text files stored in cloud storage and edited througn nano is more than enough. But some recurring manual work was still required - create new daily file and  modify according to my template. This command line utility completely removes that manual work for me. 
 
 Epictetus, great Stoic philospher and slave, once told to his students that "philosophy is something one should write down day by day". Hence name of this tool is a reference to this great human and hat tip to practical philosophy called Stoicism.
+
+## Obsidian integration
+I wrote this tool our of frustration with existing note taking apps (everything has to be in the cloud these days), but there are other apps that followed similar design choices as `stoic` did.
+
+I'm now using [Obsidian](https://obsidian.md/) as a fully featured writing app. Obsidian comes with some core plugins that you can enable, one of those is "Daily Notes" that does something similar to `stoic`. Notherless I still keep using `stoic` as a companion cli app to Obisidian, with light configuration changes they play perfectly together.
+
+With 0.6 version of stoic a lot of settings are aligned with those Obsidian defaults to. In my case, only two settings are tweaked:
+```
+export STOIC_DIR="~/Obsidian/journal"
+export STOIC_TEMPLATE="~/Obsidian/journal/template.md" 
+```
+This closely corresponds to settings I have in obsidian daily notes:
+![obsidian daily notes config](./obsidian-daily-notes.png)
+
+
+The only thing that stoic doesn't allow you to tweak is date format. So if you have that customized in obsidian - bad luck.
+
+but PR's are welcome, everything is fixable.
 
 ## Development
 As prerequisite, you need to have the [Go compiler](https://golang.org/doc/install).
