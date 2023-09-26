@@ -10,8 +10,10 @@ import (
 	stoic "github.com/skatkov/stoic/internal"
 )
 
-var BinaryVersion string   // Set via build flag
-var BinaryBuildHash string // Set via build flag
+var (
+	BinaryVersion   string // Set via build flag
+	BinaryBuildHash string // Set via build flag
+)
 
 func main() {
 	ctx := stoic.NewContext(
@@ -38,7 +40,6 @@ func main() {
 		cmd.NewQuoteCommand().Run()
 	default:
 		err := ctx.OpenInEditor(stoic.NewEntry(ctx, time.Now()))
-
 		if err != nil {
 			fmt.Println(err)
 		}

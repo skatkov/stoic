@@ -11,7 +11,7 @@ type aboutCommand struct {
 	buildHash string
 }
 
-func NewAboutCommand(version string, buildHash string) AboutCommand {
+func NewAboutCommand(version, buildHash string) AboutCommand {
 	return &aboutCommand{
 		version:   version,
 		buildHash: buildHash,

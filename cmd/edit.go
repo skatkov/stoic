@@ -22,7 +22,6 @@ type editCommand struct {
 
 func NewEditCommand(ctx stoic.Context, value string) EditCommand {
 	date, err := naturaldate.Parse(value, time.Now())
-
 	if err != nil {
 		fmt.Println("Error parsing date:", err)
 		os.Exit(1)
@@ -42,7 +41,6 @@ func (e *editCommand) Date() time.Time {
 func (e *editCommand) Run() {
 	entry := stoic.NewEntry(e.ctx, e.date)
 	err := e.ctx.OpenInEditor(entry)
-
 	if err != nil {
 		fmt.Println("Error running program:", err)
 		os.Exit(1)
