@@ -11,9 +11,7 @@
 ## Installation
 Fast installation is possible through [brew](https://brew.sh/) on Linux or MacOS.
 
-```
-brew tap skatkov/tap && brew install skatkov/tap/stoic
-```
+`brew install skatkov/tap/stoic`
 
 If you want to download executable on your own, then there is another 📥 [Installation](INSTALL.md) instruction that comes with release.
 
