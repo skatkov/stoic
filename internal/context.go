@@ -11,9 +11,11 @@ import (
 	homedir "github.com/mitchellh/go-homedir"
 )
 
-const DEFAULT_EDITOR = "nano"
-const DEFAULT_DIRECTORY = "~/Journal/"
-const DEFAULT_EXTENSION = "md"
+const (
+	DEFAULT_EDITOR    = "nano"
+	DEFAULT_DIRECTORY = "~/Journal/"
+	DEFAULT_EXTENSION = "md"
+)
 
 type Context interface {
 	Directory() string
@@ -31,7 +33,7 @@ type context struct {
 	template      string
 }
 
-func NewContext(homeDir string, fileExtension string, editor string, template string) Context {
+func NewContext(homeDir, fileExtension, editor, template string) Context {
 	directory := expandDir(homeDir)
 
 	if fileExtension == "" {
@@ -75,7 +77,7 @@ func (ctx *context) OpenInEditor(entry Entry) error {
 	return cmd.Run()
 }
 
-func createFileFromTemplate(filename string, template_path string) error {
+func createFileFromTemplate(filename, template_path string) error {
 	file, err := os.Create(filename)
 	if err != nil {
 		return err
@@ -148,8 +150,7 @@ func (ctx context) Files() []string {
 
 func createDirectoryIfMissing(dir string) error {
 	if _, err := os.Stat(dir); os.IsNotExist(err) {
-		err := os.MkdirAll(dir, 0755)
-
+		err := os.MkdirAll(dir, 0o755)
 		if err != nil {
 			return err
 		}
