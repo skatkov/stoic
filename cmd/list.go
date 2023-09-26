@@ -107,7 +107,6 @@ func (m model) View() string {
 }
 
 func OpenFileInEditor(filepath string, ctx stoic.Context) error {
-
 	cmd := exec.Command(ctx.Editor(), filepath)
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout

@@ -30,7 +30,7 @@ var (
 			BorderRight(true).
 			BorderBottom(true)
 
-	authoredBy = lipgloss.NewStyle().SetString("©").
+	authoredBy = lipgloss.NewStyle().SetString("—").
 			PaddingRight(1).
 			Foreground(foreground).
 			String()
