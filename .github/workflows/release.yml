@@ -1,10 +1,15 @@
 name: Prepare Release
+
 on:
   workflow_dispatch:
     inputs:
       release_id:
         description: "Release id (tag name)"
         required: true
+
+env:
+  GO_VERSION: 1.20
+
 jobs:
   create_release:
     name: Create release draft
@@ -14,9 +19,9 @@ jobs:
     steps:
       - name: Create release
         id: create_release
-        uses: actions/create-release@v1 # https://github.com/actions/create-release
+        uses: actions/create-release@v1 # TODO: replace deprecated action
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Automatically provided
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.event.inputs.release_id }}
           body: |
@@ -29,6 +34,7 @@ jobs:
           release_name: ${{ github.event.inputs.release_id }}
           prerelease: true
           draft: true
+
   build:
     name: Build
     needs: create_release
@@ -49,10 +55,10 @@ jobs:
             binary_name: stoic
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-go@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v4
         with:
-          go-version: "1.18"
+          go-version: ${{ env.GO_VERSION }}
       - name: Build binary
         env:
           GOOS: ${{ matrix.go_os }}
@@ -66,9 +72,9 @@ jobs:
           fi
           zip -j stoic-${{ matrix.name }}.zip ./out/${{ matrix.binary_name }} ./LICENSE ./INSTALL.md ./CHANGELOG.md
       - name: Upload binaries
-        uses: actions/upload-release-asset@v1 # https://github.com/actions/upload-release-asset
+        uses: actions/upload-release-asset@v1 # TODO: replace deprecated action
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Automatically provided
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.create_release.outputs.upload_url }}
           asset_path: ./stoic-${{ matrix.name }}.zip

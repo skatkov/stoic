@@ -1,41 +1,38 @@
-on: [push, pull_request]
 name: Test
+
+on: [push, pull_request]
+
+env:
+  GO_VERSION: 1.20
+
 jobs:
   test:
     strategy:
       matrix:
-        go-version: [1.18.x]
         os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/setup-go@v3
+      - uses: actions/setup-go@v4
         with:
-          go-version: ${{ matrix.go-version }}
-      - uses: actions/checkout@v3
+          go-version: ${{ env.GO_VERSION }}
+      - uses: actions/checkout@v4
       - run: go test ./...
 
   test-cache:
-    strategy:
-      matrix:
-        go-version: [1.18.x]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-go@v3
+      - uses: actions/setup-go@v4
         with:
-          go-version: 1.18.x
-      - uses: actions/checkout@v3
-      - uses: actions/cache@v2
+          go-version: ${{ env.GO_VERSION }}
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v3
         with:
-          # In order:
-          # * Module download cache
-          # * Build cache (Linux)
-          # * Build cache (Mac)
           path: |
             ~/go/pkg/mod
             ~/.cache/go-build
             ~/Library/Caches/go-build
             ~\AppData\Local\go-build
-          key: ${{ runner.os }}-go-${{ matrix.go-version }}-${{ hashFiles('**/go.sum') }}
+          key: ${{ runner.os }}-go-${{ env.GO_VERSION }}-${{ hashFiles('**/go.sum') }}
           restore-keys: |
-            ${{ runner.os }}-go-${{ matrix.go-version }}-
+            ${{ runner.os }}-go-${{ env.GO_VERSION }}-
       - run: go test ./...
