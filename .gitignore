@@ -1,3 +1,7 @@
 out/
 .vscode
 stoic
+
+dist/
+
+.DS_Store

@@ -86,9 +86,18 @@ cd stoic
 
 To build the project, run:
 
-`make build`
+```
+goreleaser build
+```
 
 This automatically resolves the dependencies and compiles the source code into an executable for your platform.
+
+## Releasing
+Publish to homebrew tap at "skatkov/homebrew-tap" and publish a release in current github repository.
+
+```
+goreleaser release
+```
 
 ## Contributions
 
@@ -101,7 +110,6 @@ Everyone is welcome to contribute.
 I've been brainstorming for possible improvements, and here is a rough list of ideas in no particular order:
 
 - `stoic -cal`: perhaps with the `bubbletea` TUI framework and the `cal` utility. A calendar view for existing records showing dates marked with green dots if there is a record for that day.
-- Use GoReleaser
 - Improve error handling
 - Use a CLI framework like [cobra](https://github.com/spf13/cobra)
 - Add Windows support
