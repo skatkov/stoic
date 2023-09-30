@@ -11,8 +11,9 @@ import (
 )
 
 var (
-	BinaryVersion   string // Set via build flag
-	BinaryBuildHash string // Set via build flag
+	version = "dev"
+	commit  = "none"
+	date    = "unknown"
 )
 
 func main() {
@@ -31,7 +32,7 @@ func main() {
 
 	switch {
 	case *aboutFlag:
-		cmd.NewAboutCommand(BinaryVersion, BinaryBuildHash).Run()
+		cmd.NewAboutCommand(version, commit, date).Run()
 	case *listFlag:
 		cmd.NewListCommand(ctx).Run()
 	case *editFlag != "":
