@@ -39,6 +39,11 @@ archives:
 source:
   enabled: true
 
+release:
+  github:
+    owner: skatkov
+    name: stoic
+
 changelog:
   sort: asc
   filters:
