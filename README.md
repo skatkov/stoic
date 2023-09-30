@@ -93,7 +93,11 @@ goreleaser build
 This automatically resolves the dependencies and compiles the source code into an executable for your platform.
 
 ## Releasing
-TODO: Write a section how to release this app to public
+Publish to homebrew tap at "skatkov/homebrew-tap" and publish a release in current github repository.
+
+```
+goreleaser release
+```
 
 ## Contributions
 
