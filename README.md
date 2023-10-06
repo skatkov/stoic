@@ -48,7 +48,9 @@ There is a recurring theme in biographies of great people. They had journaling a
 
 I've been battling my inner demons with different methods with varying success. But journaling has helped me keep these demons permanently at bay. My sleep will be peaceful if it follows after careful and honest self-examination in my journal.
 
-Existing software for journaling and note-taking needs to be faster to load and filled with features I don't need. Plain-text files stored in cloud storage and edited through Nano are more than enough. However, some recurring manual work was still required: creating a new daily file and modifying it according to my template. This command line utility completely removes that manual work for me.
+Existing software for journaling and note-taking is slow to load and filled with features I don't need. Plain-text files stored locally and edited through Nano are enough for journaling. 
+
+However, some recurring manual work is still required with such a simple setup; creating a new daily file and modifying it according to a template. This command line utility completely removes that manual work.
 
 Epictetus, the great Stoic philosopher and slave, once told his students that "philosophy is something one should write down day by day". Hence, the name of this tool is a reference to this great human and a hat tip to the practical philosophy called Stoicism.
 
