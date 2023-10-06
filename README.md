@@ -58,7 +58,7 @@ Epictetus, the great Stoic philosopher and slave, once told his students that "p
 
 I wrote this tool out of frustration with existing note-taking apps (everything has to be in the cloud these days), but other apps followed similar design choices as Stoic did.
 
-I'm now using [Obsidian](https://obsidian.md/) as a fully featured writing app. Obsidian comes with some core plugins that you can enable. One is "Daily Notes", which does something similar to Stoic. Nonetheless, I still keep using Stoic as a companion CLI application to Obsidian; with light configuration changes, they play perfectly together.
+I'm now using [Obsidian](https://obsidian.md/) as a fully featured writing app on my laptop and mobile phone. Obsidian comes with core plugins that you can enable. One is "Daily Notes", which does something similar to Stoic. Nonetheless, I still keep using Stoic as a companion CLI application to Obsidian; with light configuration changes, they play perfectly together.
 
 With the 0.6 version of Stoic, many settings align with those Obsidian defaults. In my case, only two settings are tweaked:
 
