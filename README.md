@@ -2,13 +2,7 @@
 
 ![stoic](./demo.png)
 
-Stoic is a command-line application for daily journaling with plain-text files. It helps maintain day-to-day journaling habits by allowing you to:
-
-- Instantly edit the current day's entry
-- Journal using any plain-text format (txt, md, [xit](https://xit.jotaen.net/), or anything else)
-- Use journal file template support
-- Works on Linux and OSX
-- Review and filter existing entries
+Stoic is a command-line application for daily journaling with plain-text files. It helps maintain day-to-day journaling habit by allowing you to instantly edit current day's entry with console editor of choice.
 
 ## Installation
 
