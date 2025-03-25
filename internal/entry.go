@@ -17,7 +17,9 @@ type entry struct {
 
 func NewEntry(ctx Context, time time.Time) Entry {
 	return &entry{
-		filepath: ctx.Directory() + strings.ToLower(fmt.Sprintf("%s.%s", time.Format(FILE_TEMPLATE), ctx.FileExtension())),
+		filepath: ctx.Directory() + strings.ToLower(
+			fmt.Sprintf("%s.%s", time.Format(FILE_TEMPLATE), ctx.FileExtension()),
+		),
 	}
 }
 

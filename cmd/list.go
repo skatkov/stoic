@@ -27,6 +27,7 @@ func NewListCommand(ctx stoic.Context) ListCommand {
 
 func (lc listCommand) Run() {
 	var items []list.Item
+
 	files := lc.ctx.Files()
 
 	for _, file := range files {
@@ -85,11 +86,13 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			selectedItem, _ := m.list.SelectedItem().(item)
 
 			_ = OpenFileInEditor(selectedItem.title, m.context)
+
 			os.Exit(0)
 		case msg.String() == " ":
 			selectedItem, _ := m.list.SelectedItem().(item)
 
 			_ = OpenFileInEditor(selectedItem.title, m.context)
+
 			os.Exit(0)
 		}
 	case tea.WindowSizeMsg:
@@ -99,6 +102,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 	var cmd tea.Cmd
 	m.list, cmd = m.list.Update(msg)
+
 	return m, cmd
 }
 
@@ -111,6 +115,7 @@ func OpenFileInEditor(filepath string, ctx stoic.Context) error {
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
+
 	return cmd.Run()
 }
 
@@ -144,6 +149,7 @@ func ConvertBytesToSizeString(size int64) string {
 		} else if curr < thousand {
 			return fmt.Sprintf("%d%s", int(curr), s)
 		}
+
 		curr /= thousand
 	}
 

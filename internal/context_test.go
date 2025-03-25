@@ -20,7 +20,11 @@ func TestFiles(t *testing.T) {
 	assert.Empty(t, ctx.Files())
 
 	ctx = NewContext(test_folder+"/journal_with_various_entries", "md", "", "")
-	assert.Equal(t, []string{test_folder + "/journal_with_various_entries/" + "1984-01-25.md"}, ctx.Files())
+	assert.Equal(
+		t,
+		[]string{test_folder + "/journal_with_various_entries/" + "1984-01-25.md"},
+		ctx.Files(),
+	)
 
 	ctx = NewContext(test_folder+"/journal_zero", "", "", "")
 	assert.Empty(t, ctx.Files())
@@ -33,7 +37,7 @@ func TestNewContext(t *testing.T) {
 	assert.Equal(t, homeDir.HomeDir+"/Journal/", ctx.Directory())
 	assert.Equal(t, "md", ctx.FileExtension())
 	assert.Equal(t, "nano", ctx.Editor())
-	assert.Equal(t, "", ctx.Template())
+	assert.Empty(t, ctx.Template())
 }
 
 func TestNewContextWithEditor(t *testing.T) {

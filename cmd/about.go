@@ -21,9 +21,9 @@ func NewAboutCommand(version, commitHash, date string) AboutCommand {
 }
 
 func (a *aboutCommand) Run() {
-	about_message := fmt.Sprintf("Version: %s", a.version) + "\n"
-	about_message += fmt.Sprintf("Commit Hash: %s", a.commitHash) + "\n"
-	about_message += fmt.Sprintf("Release Date: %s", a.date) + "\n"
+	about_message := "Version: " + a.version + "\n"
+	about_message += "Commit Hash: " + a.commitHash + "\n"
+	about_message += "Release Date: " + a.date + "\n"
 
 	fmt.Println(about_message)
 }

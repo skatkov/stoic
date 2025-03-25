@@ -40,6 +40,7 @@ func (e *editCommand) Date() time.Time {
 
 func (e *editCommand) Run() {
 	entry := stoic.NewEntry(e.ctx, e.date)
+
 	err := e.ctx.OpenInEditor(entry)
 	if err != nil {
 		fmt.Println("Error running program:", err)

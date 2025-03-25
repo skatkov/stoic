@@ -63,6 +63,7 @@ func (ctx *context) OpenInEditor(entry Entry) error {
 	err := createDirectoryIfMissing(ctx.directory)
 	if err != nil {
 		fmt.Println(err)
+
 		return err
 	}
 
@@ -74,6 +75,7 @@ func (ctx *context) OpenInEditor(entry Entry) error {
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
+
 	return cmd.Run()
 }
 
@@ -112,6 +114,7 @@ func readFile(filename string) (string, error) {
 	defer file.Close()
 
 	var lines []string
+
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		lines = append(lines, scanner.Text())
@@ -134,6 +137,7 @@ func (ctx context) Files() []string {
 	files, _ := os.ReadDir(ctx.directory)
 
 	var filenames []string
+
 	for _, file := range files {
 		if strings.HasSuffix(file.Name(), ctx.fileExtension) {
 			filename := strings.TrimSuffix(file.Name(), "."+ctx.fileExtension)
