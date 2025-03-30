@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"math/rand"
 	"strings"
-	"time"
 
 	"github.com/charmbracelet/lipgloss"
 )
@@ -112,7 +111,6 @@ func NewQuoteCommand() QuoteCommand {
 }
 
 func (c quoteCommand) Run() {
-	rand.Seed(time.Now().Unix())
 	quote := c.quotes[rand.Intn(len(c.quotes))]
 	doc := strings.Builder{}
 

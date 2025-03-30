@@ -1,38 +1,34 @@
 # .github/workflows/release.yml
-name: goreleaser
+name: release
 
 on:
   push:
-    # run only against tags
     tags:
       - "*"
 
 permissions:
   contents: write
-  # packages: write
-  # issues: write
+
+# Don't cancel release builds as they're triggered by tags
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  goreleaser:
+  release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - run: git fetch --force --tags
       - uses: actions/setup-go@v4
         with:
-          go-version: stable
-      # More assembly might be required: Docker logins, GPG, etc.
-      # It all depends on your needs.
+          go-version: 1.24
+          cache: true
+      - run: git fetch --tags
       - uses: goreleaser/goreleaser-action@v5
         with:
-          # either 'goreleaser' (default) or 'goreleaser-pro':
-          distribution: goreleaser
-          version: latest
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.STOIC_SECRET }}
-          # Your GoReleaser Pro key, if you are using the 'goreleaser-pro'
-          # distribution:
+          # TODO: enable goreleaser pro when ready
           # GORELEASER_KEY: ${{ secrets.GORELEASER_KEY }}
