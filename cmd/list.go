@@ -50,7 +50,7 @@ func (lc listCommand) Run() {
 
 	p := tea.NewProgram(m, tea.WithAltScreen())
 
-	if err := p.Start(); err != nil {
+	if _, err := p.Run(); err != nil {
 		fmt.Println("Error running program:", err)
 		os.Exit(1)
 	}
