@@ -23,6 +23,8 @@ type Context interface {
 	Template() string
 	Editor() string
 	OpenInEditor(entry Entry) error
+	EnsureEntry(entry Entry) error
+	Append(entry Entry, text string) error
 	Files() []string
 }
 
@@ -60,14 +62,8 @@ func (ctx *context) Editor() string        { return ctx.editor }
 func (ctx *context) Template() string      { return ctx.template }
 
 func (ctx *context) OpenInEditor(entry Entry) error {
-	err := createDirectoryIfMissing(ctx.directory)
-	if err != nil {
-		fmt.Println(err)
+	if err := ctx.EnsureEntry(entry); err != nil {
 		return err
-	}
-
-	if ctx.Template() != "" && !fileExists(entry.Filepath()) {
-		_ = createFileFromTemplate(entry.Filepath(), ctx.Template())
 	}
 
 	cmd := exec.Command(ctx.editor, entry.Filepath())
@@ -75,6 +71,58 @@ func (ctx *context) OpenInEditor(entry Entry) error {
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	return cmd.Run()
+}
+
+// EnsureEntry makes sure the journal directory exists and the entry file
+// is created from template when configured.
+func (ctx *context) EnsureEntry(entry Entry) error {
+	if err := createDirectoryIfMissing(ctx.directory); err != nil {
+		fmt.Println(err)
+		return err
+	}
+
+	if ctx.Template() != "" && !fileExists(entry.Filepath()) {
+		if err := createFileFromTemplate(entry.Filepath(), ctx.Template()); err != nil {
+			fmt.Println(err)
+			return err
+		}
+	}
+
+	if !fileExists(entry.Filepath()) {
+		file, err := os.Create(entry.Filepath())
+		if err != nil {
+			fmt.Println(err)
+			return err
+		}
+		_ = file.Close()
+	}
+
+	return nil
+}
+
+// Append adds text to the entry, ensuring a trailing newline separation.
+func (ctx *context) Append(entry Entry, text string) error {
+	if err := ctx.EnsureEntry(entry); err != nil {
+		return err
+	}
+
+	f, err := os.OpenFile(entry.Filepath(), os.O_APPEND|os.O_WRONLY, 0o644)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	separator, err := separatorForAppend(entry.Filepath())
+	if err != nil {
+		return err
+	}
+
+	if !strings.HasSuffix(text, "\n") {
+		text += "\n"
+	}
+
+	_, err = f.WriteString(separator + text)
+	return err
 }
 
 func createFileFromTemplate(filename, template_path string) error {
@@ -101,6 +149,66 @@ func fileExists(filepath string) bool {
 	}
 
 	return true
+}
+
+// separatorForAppend returns the separator to place before appended text.
+// - Empty file: no separator.
+// - Ends without newline: add "\n\n" (line break + one blank line).
+// - Ends with one newline: add "\n" to create a blank line.
+// - Ends with two or more newlines: add nothing.
+func separatorForAppend(filepath string) (string, error) {
+	info, err := os.Stat(filepath)
+	if err != nil {
+		return "", err
+	}
+	if info.Size() == 0 {
+		return "", nil
+	}
+
+	trailing, err := trailingNewlines(filepath, info.Size())
+	if err != nil {
+		return "", err
+	}
+
+	switch {
+	case trailing >= 2:
+		return "", nil
+	case trailing == 1:
+		return "\n", nil
+	default:
+		return "\n\n", nil
+	}
+}
+
+// trailingNewlines counts trailing '\n' characters up to the last two bytes.
+func trailingNewlines(filepath string, size int64) (int, error) {
+	readLen := int64(2)
+	if size < readLen {
+		readLen = size
+	}
+
+	file, err := os.Open(filepath)
+	if err != nil {
+		return 0, err
+	}
+	defer file.Close()
+
+	buf := make([]byte, readLen)
+	_, err = file.ReadAt(buf, size-readLen)
+	if err != nil {
+		return 0, err
+	}
+
+	count := 0
+	for i := len(buf) - 1; i >= 0; i-- {
+		if buf[i] == '\n' {
+			count++
+		} else {
+			break
+		}
+	}
+
+	return count, nil
 }
 
 func readFile(filename string) (string, error) {
