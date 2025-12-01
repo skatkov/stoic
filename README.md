@@ -22,7 +22,8 @@ In a terminal:
 - `stoic -quote`: shows a random quote encouraging the journaling habit
 - `stoic -about`: shows information about the application
 - `stoic "text to append"`: appends text to today's entry (see flags below)
-- Flags for append: `-t, --time` prefixes `HH:MM —`; `-b, --bullet` prefixes `-`. Combine them for `- HH:MM — text`.
+- `echo "piped text" | stoic`: pipe content to append instead of passing arguments
+- Flags for append: `-b, --bullet` prefixes `-` to the appended line.
 
 ## Configuration
 
@@ -31,7 +32,6 @@ In a terminal:
 - Provide file template through `$STOIC_TEMPLATE` global variable.
 - Provide new extension format through `$STOIC_EXT` global variables. (default: `md`)
 - Append defaults can be made sticky with env vars:
-  - `STOIC_APPEND_TIME=true` to always prefix time on append.
   - `STOIC_APPEND_BULLET=true` to always prefix a bullet on append.
 
 ```shell

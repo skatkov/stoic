@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"io"
 	"os"
 	"strings"
 	"time"
@@ -30,13 +31,16 @@ func main() {
 	quoteFlag := flag.Bool("quote", false, "random quote to inspire ongoing journaling habit")
 	editFlag := flag.String("edit", "", "edit a journal entry")
 
-	defaultTime := boolFromEnv("STOIC_APPEND_TIME")
 	defaultBullet := boolFromEnv("STOIC_APPEND_BULLET")
-	timeFlag := flag.Bool("time", defaultTime, "prefix appended text with current time (HH:MM)")
-	flag.BoolVar(timeFlag, "t", defaultTime, "prefix appended text with current time (HH:MM)")
 	bulletFlag := flag.Bool("bullet", defaultBullet, "prefix appended text with '- '")
 	flag.BoolVar(bulletFlag, "b", defaultBullet, "prefix appended text with '- '")
 	flag.Parse()
+
+	appendText, hasAppendText, err := resolveAppendInput(flag.Args(), os.Stdin)
+	if err != nil {
+		fmt.Println("Error reading piped input:", err)
+		os.Exit(1)
+	}
 
 	switch {
 	case *aboutFlag:
@@ -47,9 +51,8 @@ func main() {
 		cmd.NewEditCommand(ctx, *editFlag).Run()
 	case *quoteFlag:
 		cmd.NewQuoteCommand().Run()
-	case len(flag.Args()) > 0:
-		text := strings.Join(flag.Args(), " ")
-		cmd.NewAppendCommand(ctx, time.Now(), text, *timeFlag, *bulletFlag).Run()
+	case hasAppendText:
+		cmd.NewAppendCommand(ctx, time.Now(), appendText, *bulletFlag).Run()
 	default:
 		err := ctx.OpenInEditor(stoic.NewEntry(ctx, time.Now()))
 		if err != nil {
@@ -66,4 +69,37 @@ func boolFromEnv(key string) bool {
 	default:
 		return false
 	}
+}
+
+// resolveAppendInput determines whether append text was provided either as
+// positional arguments or via piped stdin. It returns the text, a boolean
+// indicating presence, and any read error.
+func resolveAppendInput(args []string, stdin *os.File) (string, bool, error) {
+	if len(args) > 0 {
+		return strings.Join(args, " "), true, nil
+	}
+
+	if stdin == nil {
+		return "", false, nil
+	}
+
+	info, err := stdin.Stat()
+	if err != nil {
+		return "", false, err
+	}
+
+	if info.Mode()&os.ModeCharDevice != 0 {
+		return "", false, nil
+	}
+
+	data, err := io.ReadAll(stdin)
+	if err != nil {
+		return "", false, err
+	}
+
+	if len(data) == 0 {
+		return "", false, nil
+	}
+
+	return string(data), true, nil
 }
