@@ -5,7 +5,8 @@ import (
 	"math/rand"
 	"strings"
 
-	"github.com/charmbracelet/lipgloss"
+	"charm.land/lipgloss/v2"
+	"charm.land/lipgloss/v2/compat"
 )
 
 type quote struct {
@@ -18,7 +19,7 @@ var quotes = []quote{}
 // Style definitions
 
 var (
-	foreground = lipgloss.AdaptiveColor{Light: "#969B86", Dark: "#696969"}
+	foreground = compat.AdaptiveColor{Light: lipgloss.Color("#969B86"), Dark: lipgloss.Color("#696969")}
 	pageStyle  = lipgloss.NewStyle().Padding(1, 2, 1, 2)
 	boxStyle   = lipgloss.NewStyle().
 			Border(lipgloss.RoundedBorder()).
