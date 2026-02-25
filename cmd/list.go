@@ -5,9 +5,9 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/charmbracelet/bubbles/list"
-	tea "github.com/charmbracelet/bubbletea"
-	"github.com/charmbracelet/lipgloss"
+	"charm.land/bubbles/v2/list"
+	tea "charm.land/bubbletea/v2"
+	"charm.land/lipgloss/v2"
 	stoic "github.com/skatkov/stoic/internal"
 )
 
@@ -48,7 +48,7 @@ func (lc listCommand) Run() {
 	}
 	m.list.Title = "Journal Entries"
 
-	p := tea.NewProgram(m, tea.WithAltScreen())
+	p := tea.NewProgram(m)
 
 	if _, err := p.Run(); err != nil {
 		fmt.Println("Error running program:", err)
@@ -77,7 +77,7 @@ func (m model) Init() tea.Cmd {
 
 func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
-	case tea.KeyMsg:
+	case tea.KeyPressMsg:
 		switch {
 		case msg.String() == "ctrl+c":
 			return m, tea.Quit
@@ -86,7 +86,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 			_ = OpenFileInEditor(selectedItem.title, m.context)
 			os.Exit(0)
-		case msg.String() == " ":
+		case msg.String() == "space":
 			selectedItem, _ := m.list.SelectedItem().(item)
 
 			_ = OpenFileInEditor(selectedItem.title, m.context)
@@ -102,8 +102,10 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	return m, cmd
 }
 
-func (m model) View() string {
-	return docStyle.Render(m.list.View())
+func (m model) View() tea.View {
+	v := tea.NewView(docStyle.Render(m.list.View()))
+	v.AltScreen = true
+	return v
 }
 
 func OpenFileInEditor(filepath string, ctx stoic.Context) error {
