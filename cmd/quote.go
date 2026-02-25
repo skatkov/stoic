@@ -3,10 +3,10 @@ package stoic
 import (
 	"fmt"
 	"math/rand"
+	"os"
 	"strings"
 
 	"charm.land/lipgloss/v2"
-	"charm.land/lipgloss/v2/compat"
 )
 
 type quote struct {
@@ -19,9 +19,12 @@ var quotes = []quote{}
 // Style definitions
 
 var (
-	foreground = compat.AdaptiveColor{Light: lipgloss.Color("#969B86"), Dark: lipgloss.Color("#696969")}
-	pageStyle  = lipgloss.NewStyle().Padding(1, 2, 1, 2)
-	boxStyle   = lipgloss.NewStyle().
+	foreground = lipgloss.LightDark(lipgloss.HasDarkBackground(os.Stdin, os.Stdout))(
+		lipgloss.Color("#969B86"),
+		lipgloss.Color("#696969"),
+	)
+	pageStyle = lipgloss.NewStyle().Padding(1, 2, 1, 2)
+	boxStyle  = lipgloss.NewStyle().
 			Border(lipgloss.RoundedBorder()).
 			BorderForeground(lipgloss.Color("#874BFD")).
 			Padding(1, 0).
